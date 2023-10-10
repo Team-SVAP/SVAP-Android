@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <font-family xmlns:android="http://schemas.android.com/apk/res/android">
-  
+
+    <font
+        android:font="@font/ibm_bold"/>
+
+    <font
+        android:font="@font/ibm_extralight"/>
+
+    <font
+        android:font="@font/ibm_medium"/>
+
+    <font
+        android:font="@font/ibm_regular"/>
+
+    <font
+        android:font="@font/ibm_semibold"/>
+
+    <font
+        android:font="@font/ibm_thin"/>
+
 </font-family>
