@@ -20,4 +20,7 @@
     <color name="main_7">#CCE3FB</color>
     <color name="main_8">#E3F0FD</color>
     <color name="main_9">#F7FBFF</color>
+    <color name="system_blue">#0273E7</color>
+    <color name="system_red">#E50000</color>
+    <color name="system_green">#15DA04</color>
 </resources>
