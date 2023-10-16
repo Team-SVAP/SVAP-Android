@@ -1,4 +1,6 @@
 package com.amazing.android.svap_android.login
 
-class LoginRequest {
-}
+data class LoginRequest (
+    val accountId: String,
+    val password: String,
+)
