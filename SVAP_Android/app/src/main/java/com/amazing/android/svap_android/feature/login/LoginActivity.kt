@@ -1,15 +1,14 @@
-package com.amazing.android.svap_android
+package com.amazing.android.svap_android.feature.login
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.amazing.android.svap_android.MainActivity
 import com.amazing.android.svap_android.api.ApiProvider
 import com.amazing.android.svap_android.api.AuthAPI
 import com.amazing.android.svap_android.databinding.ActivityLoginBinding
-import com.amazing.android.svap_android.feature.login.LoginRequest
-import com.amazing.android.svap_android.feature.login.LoginResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
