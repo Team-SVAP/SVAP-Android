@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.amazing.android.svap_android.api.ApiProvider
 import com.amazing.android.svap_android.api.AuthAPI
 import com.amazing.android.svap_android.databinding.ActivityLoginBinding
-import com.amazing.android.svap_android.login.LoginRequest
-import com.amazing.android.svap_android.login.LoginResponse
+import com.amazing.android.svap_android.feature.login.LoginRequest
+import com.amazing.android.svap_android.feature.login.LoginResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
