@@ -22,7 +22,6 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun initFragmentManager() {
-        //val fragmentManger : FragmentManager = supportFragmentManager
         val fragmentTransaction : FragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fl_signup, SignUpIdFragment());
         fragmentTransaction.commit()
