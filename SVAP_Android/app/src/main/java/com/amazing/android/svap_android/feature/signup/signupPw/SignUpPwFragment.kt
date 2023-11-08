@@ -1,4 +1,4 @@
-package com.amazing.android.svap_android.feature.signup
+package com.amazing.android.svap_android.feature.signup.signupPw
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,6 @@ import com.amazing.android.svap_android.R
 import com.amazing.android.svap_android.api.ApiProvider
 import com.amazing.android.svap_android.api.AuthAPI
 import com.amazing.android.svap_android.databinding.FragmentSignUpPwBinding
-import com.amazing.android.svap_android.feature.signup.signupId.CkPasswordRequest
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
