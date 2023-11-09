@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature.signup.SignUpPwFragment">
+    tools:context=".feature.signup.signupPw.SignUpPwFragment">
 
     <EditText
         android:id="@+id/et_signup_pw_pw"
