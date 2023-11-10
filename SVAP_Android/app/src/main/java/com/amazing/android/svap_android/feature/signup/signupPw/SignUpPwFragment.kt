@@ -59,7 +59,6 @@ class SignUpPwFragment : Fragment() {
             )
         ).enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                response.code()
                 when (response.code()) {
                     200 -> {
                         //다음
