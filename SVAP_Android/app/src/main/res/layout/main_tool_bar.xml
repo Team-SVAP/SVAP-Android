@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.Toolbar
+    android:id="@+id/tb_main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <ImageButton
+        android:id="@+id/ib_tool_bar_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/grid_line"
-        android:layout_gravity="end"/>
+        android:layout_gravity="end"
+        android:layout_marginEnd="18dp"
+        android:background="@android:color/transparent"/>
 
 </androidx.appcompat.widget.Toolbar>
