@@ -26,6 +26,7 @@ class SignUpIdFragment : Fragment() {
     lateinit var binding: FragmentSignUpIdBinding
     private val retrofit: Retrofit = ApiProvider.getInstance()
     private val api: AuthAPI = retrofit.create(AuthAPI::class.java)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -54,7 +55,6 @@ class SignUpIdFragment : Fragment() {
     }
 
     private fun initNextBtn() {
-
         binding.etSignupIdId.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
@@ -71,15 +71,15 @@ class SignUpIdFragment : Fragment() {
         })
 
         binding.btnSignupIdNext.setOnClickListener {
-            val username = binding.etSignupIdId.text.toString()
-            sever(username)
+            val accountId = binding.etSignupIdId.text.toString()
+            sever(accountId)
         }
     }
 
-    private fun sever(username: String) {
+    private fun sever(accountId: String) {
         api.ckId(
             SignUpIdRequest(
-                username = username
+                accountId = accountId
             )
         ).enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
@@ -90,10 +90,13 @@ class SignUpIdFragment : Fragment() {
                         fragmentTransaction?.replace(R.id.fl_signup, SignUpPwFragment());
                         fragmentTransaction?.commit()
                     }
-                    409-> {
-                        binding.tvSignupIdCheck.text = resources.getString(R.string.use_another_user)
+
+                    409 -> {
+                        binding.tvSignupIdCheck.text =
+                            resources.getString(R.string.use_another_user)
                         binding.tvSignupIdCheck.visibility = View.VISIBLE
                     }
+
                     400, 500 -> {
                         binding.tvSignupIdCheck.text = resources.getString(R.string.check_id)
                         binding.tvSignupIdCheck.visibility = View.VISIBLE
