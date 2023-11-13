@@ -10,7 +10,7 @@ import retrofit2.http.POST
 
 interface AuthAPI {
 
-    @POST("/login") //로그인
+    @POST("/user/login") //로그인
     fun login(
         @Body request: LoginRequest
     ): Call<LoginResponse>
@@ -20,7 +20,7 @@ interface AuthAPI {
         @Body request: SignUpIdRequest
     ): Call<Void>
 
-    @POST("/ck-password") //회원가입 비번
+    @POST("/user/ck-password") //회원가입 비번
     fun ckPassword(
         @Body request: CkPasswordRequest
     ): Call<Void>
