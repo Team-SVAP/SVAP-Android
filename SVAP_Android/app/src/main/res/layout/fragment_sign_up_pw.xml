@@ -7,6 +7,27 @@
     android:layout_height="match_parent"
     tools:context=".feature.signup.signupPw.SignUpPwFragment">
 
+    <TextView
+        android:id="@+id/tv_signup_pw_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/signup"
+        android:fontFamily="@font/ibm_semibold"
+        android:textColor="@color/gray_700"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/tv_signup_pw_page_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/gray_700"
+        android:text="2/3"
+        android:fontFamily="@font/ibm_semibold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <EditText
         android:id="@+id/et_signup_pw_pw"
         android:layout_width="match_parent"
@@ -18,9 +39,12 @@
         android:textSize="16sp"
         android:drawableEnd="@drawable/eye_close_line"
         android:paddingEnd="16dp"
+        android:singleLine="true"
+        android:layout_marginTop="16dp"
+        android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_signup_pw_page_count"/>
 
     <EditText
         android:id="@+id/et_signup_pw_check"
@@ -34,6 +58,8 @@
         android:drawableEnd="@drawable/eye_close_line"
         android:paddingEnd="16dp"
         android:layout_marginTop="8dp"
+        android:singleLine="true"
+        android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="@id/et_signup_pw_pw"
         app:layout_constraintEnd_toEndOf="@id/et_signup_pw_pw"
         app:layout_constraintTop_toBottomOf="@id/et_signup_pw_pw"/>
@@ -43,19 +69,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/check_password"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/ibm_medium"
-        android:textColor="@color/system_red"
-        android:textSize="12sp"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="@id/et_signup_pw_check"
-        app:layout_constraintTop_toBottomOf="@id/et_signup_pw_check"/>
-
-    <TextView
-        android:id="@+id/tv_signup_pw_no"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/password_no"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/ibm_medium"
         android:textColor="@color/system_red"

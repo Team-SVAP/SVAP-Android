@@ -6,6 +6,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".feature.signup.signupId.SignUpIdFragment">
 
+    <TextView
+        android:id="@+id/tv_signup_id_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/signup"
+        android:fontFamily="@font/ibm_semibold"
+        android:textColor="@color/gray_700"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/tv_signup_id_page_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/gray_700"
+        android:text="1/3"
+        android:fontFamily="@font/ibm_semibold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <EditText
         android:id="@+id/et_signup_id_id"
         android:layout_width="match_parent"
@@ -15,9 +36,23 @@
         android:fontFamily="@font/ibm_medium"
         android:paddingStart="16dp"
         android:textSize="16sp"
+        android:singleLine="true"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_signup_id_page_count"/>
+
+    <TextView
+        android:id="@+id/tv_signup_id_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/check_id"
+        android:fontFamily="@font/ibm_medium"
+        android:textColor="@color/system_red"
+        android:textSize="12sp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@id/et_signup_id_id"
+        app:layout_constraintTop_toBottomOf="@id/et_signup_id_id"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -64,7 +99,4 @@
                 android:layout_marginStart="8dp"/>
         </LinearLayout>
     </LinearLayout>
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
