@@ -90,7 +90,7 @@ class SignUpNameFragment : Fragment() {
                         //회원가입
                     }
                     400, 500 -> {
-                        binding.tvSignupNameCheck.visibility = View.VISIBLE
+                        binding.tvSignupNameCheck.text = resources.getString(R.string.name_check)
                     }
                 }
             }

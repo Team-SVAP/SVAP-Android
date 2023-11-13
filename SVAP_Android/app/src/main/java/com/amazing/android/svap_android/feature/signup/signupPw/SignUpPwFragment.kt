@@ -89,7 +89,6 @@ class SignUpPwFragment : Fragment() {
             val pwCheck = binding.etSignupPwCheck.text.toString()
             if (pw != pwCheck) {
                 binding.tvSignupPwCheck.text = resources.getString(R.string.password_no)
-                binding.tvSignupPwCheck.visibility = View.VISIBLE
             } else {
                 sever(pw)
             }
@@ -121,10 +120,8 @@ class SignUpPwFragment : Fragment() {
                         fragmentTransaction?.replace(R.id.fl_signup, SignUpNameFragment());
                         fragmentTransaction?.commit()
                     }
-
                     400, 500 -> {
                         binding.tvSignupPwCheck.text = resources.getString(R.string.check_password)
-                        binding.tvSignupPwCheck.visibility = View.VISIBLE
                     }
                 }
             }

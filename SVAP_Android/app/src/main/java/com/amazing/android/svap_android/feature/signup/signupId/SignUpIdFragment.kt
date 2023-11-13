@@ -27,15 +27,10 @@ class SignUpIdFragment : Fragment() {
     private val retrofit: Retrofit = ApiProvider.getInstance()
     private val api: AuthAPI = retrofit.create(AuthAPI::class.java)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentSignUpIdBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -76,10 +71,14 @@ class SignUpIdFragment : Fragment() {
         }
     }
 
+    // 1. Callback
+    // 2. Response
+    // 3. data class
+
     private fun sever(accountId: String) {
         api.ckId(
             SignUpIdRequest(
-                accountId = accountId
+                accountId = accountId,
             )
         ).enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
@@ -90,16 +89,12 @@ class SignUpIdFragment : Fragment() {
                         fragmentTransaction?.replace(R.id.fl_signup, SignUpPwFragment());
                         fragmentTransaction?.commit()
                     }
-
                     409 -> {
                         binding.tvSignupIdCheck.text =
                             resources.getString(R.string.use_another_user)
-                        binding.tvSignupIdCheck.visibility = View.VISIBLE
                     }
-
                     400, 500 -> {
                         binding.tvSignupIdCheck.text = resources.getString(R.string.check_id)
-                        binding.tvSignupIdCheck.visibility = View.VISIBLE
                     }
                 }
             }

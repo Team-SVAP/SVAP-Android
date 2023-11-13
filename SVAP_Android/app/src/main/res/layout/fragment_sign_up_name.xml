@@ -47,11 +47,9 @@
         android:id="@+id/tv_signup_name_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/name_check"
         android:fontFamily="@font/ibm_medium"
         android:textColor="@color/system_red"
         android:textSize="12sp"
-        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@id/et_signup_name_name"
         app:layout_constraintTop_toBottomOf="@id/et_signup_name_name"/>
 

@@ -38,6 +38,7 @@
         android:textSize="16sp"
         android:singleLine="true"
         android:layout_marginTop="16dp"
+        android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_signup_id_page_count"/>
@@ -46,11 +47,9 @@
         android:id="@+id/tv_signup_id_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/check_id"
         android:fontFamily="@font/ibm_medium"
         android:textColor="@color/system_red"
         android:textSize="12sp"
-        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@id/et_signup_id_id"
         app:layout_constraintTop_toBottomOf="@id/et_signup_id_id"/>
 
