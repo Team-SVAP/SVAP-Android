@@ -1,60 +1,103 @@
 package com.amazing.android.svap_android.feature.signup.signupName
 
+import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.FragmentTransaction
 import com.amazing.android.svap_android.R
+import com.amazing.android.svap_android.api.ApiProvider
+import com.amazing.android.svap_android.api.AuthAPI
+import com.amazing.android.svap_android.databinding.FragmentSignUpNameBinding
+import com.amazing.android.svap_android.feature.login.LoginActivity
+import com.amazing.android.svap_android.feature.signup.signupId.SignUpIdRequest
+import com.amazing.android.svap_android.feature.signup.signupPw.SignUpPwFragment
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SignUpNameFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SignUpNameFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    lateinit var binding: FragmentSignUpNameBinding
+    private val retrofit: Retrofit = ApiProvider.getInstance()
+    private val api: AuthAPI = retrofit.create(AuthAPI::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_up_name, container, false)
+        binding = FragmentSignUpNameBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SignUpNameFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SignUpNameFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initNextBtn()
+        gotoLogin()
+    }
+
+    private fun gotoLogin() {
+        binding.tvSignupNameLogin.setOnClickListener {
+            val intent = Intent(context, LoginActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    private fun initNextBtn() {
+
+        binding.etSignupNameName.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.btnSignupIdNext.isEnabled = binding.etSignupNameName.text.isNotEmpty()
+                if (binding.etSignupNameName.text.isEmpty()) {
+                    binding.btnSignupIdNext.setBackgroundResource(R.drawable.disable_btn)
+                } else {
+                    binding.btnSignupIdNext.setBackgroundResource(R.drawable.able_btn)
                 }
             }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
+        binding.btnSignupIdNext.setOnClickListener {
+            val username = binding.etSignupNameName.text.toString()
+            sever(username)
+        }
+    }
+
+    private fun sever(name: String) {
+        api.ckName(
+            SignUpNameRequest(
+                username = name
+            )
+        ).enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                when (response.code()) {
+                    200 -> {
+                        //회원가입
+                    }
+                    400, 500 -> {
+                        binding.tvSignupNameCheck.visibility = View.VISIBLE
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Toast.makeText(context, R.string.fail_sever, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }
