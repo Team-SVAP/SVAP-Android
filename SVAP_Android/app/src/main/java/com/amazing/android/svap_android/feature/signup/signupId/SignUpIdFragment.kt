@@ -36,8 +36,6 @@ class SignUpIdFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSignUpIdBinding.inflate(inflater, container, false)
-
-        // Inflate the layout for this fragment
         return binding.root
     }
 
@@ -93,11 +91,11 @@ class SignUpIdFragment : Fragment() {
                         fragmentTransaction?.commit()
                     }
                     409-> {
-                        binding.tvSignupIdCheck.text = R.string.use_another_user.toString()
+                        binding.tvSignupIdCheck.text = resources.getString(R.string.use_another_user)
                         binding.tvSignupIdCheck.visibility = View.VISIBLE
                     }
                     400, 500 -> {
-                        binding.tvSignupIdCheck.text = R.string.check_id.toString()
+                        binding.tvSignupIdCheck.text = resources.getString(R.string.check_id)
                         binding.tvSignupIdCheck.visibility = View.VISIBLE
                     }
                 }
