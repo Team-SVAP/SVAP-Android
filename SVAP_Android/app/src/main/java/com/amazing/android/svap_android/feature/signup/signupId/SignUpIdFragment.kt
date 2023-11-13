@@ -92,8 +92,12 @@ class SignUpIdFragment : Fragment() {
                         fragmentTransaction?.replace(R.id.fl_signup, SignUpPwFragment());
                         fragmentTransaction?.commit()
                     }
-
+                    409-> {
+                        binding.tvSignupIdCheck.text = R.string.use_another_user.toString()
+                        binding.tvSignupIdCheck.visibility = View.VISIBLE
+                    }
                     400, 500 -> {
+                        binding.tvSignupIdCheck.text = R.string.check_id.toString()
                         binding.tvSignupIdCheck.visibility = View.VISIBLE
                     }
                 }
