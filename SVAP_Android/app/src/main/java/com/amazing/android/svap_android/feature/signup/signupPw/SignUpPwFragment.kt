@@ -1,6 +1,9 @@
 package com.amazing.android.svap_android.feature.signup.signupPw
 
+import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +13,7 @@ import com.amazing.android.svap_android.R
 import com.amazing.android.svap_android.api.ApiProvider
 import com.amazing.android.svap_android.api.AuthAPI
 import com.amazing.android.svap_android.databinding.FragmentSignUpPwBinding
+import com.amazing.android.svap_android.feature.login.LoginActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,7 +33,6 @@ class SignUpPwFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentSignUpPwBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -37,18 +40,67 @@ class SignUpPwFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initNextBtn();
+        initNextBtn()
+        gotoLogin()
+    }
+
+    private fun gotoLogin() {
+        binding.tvSignupPwLogin.setOnClickListener {
+            val intent = Intent(context, LoginActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun initNextBtn() {
+        binding.etSignupPwPw.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                changeBtn()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+        })
+
+        binding.etSignupPwCheck.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                changeBtn()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+        })
+
         binding.btnSignupPwNext.setOnClickListener {
             val pw = binding.etSignupPwPw.text.toString()
             val pwCheck = binding.etSignupPwCheck.text.toString()
             if (pw != pwCheck) {
-                binding.tvSignupPwNo.visibility = View.VISIBLE
+                binding.tvSignupPwCheck.text = R.string.password_no.toString()
+                binding.tvSignupPwCheck.visibility = View.VISIBLE
             } else {
                 sever(pw)
             }
+        }
+    }
+
+    private fun changeBtn() {
+        val pw = binding.etSignupPwPw.text.toString()
+        val pwCheck = binding.etSignupPwCheck.text.toString()
+        binding.btnSignupPwNext.isEnabled = !(pw.isEmpty() || pwCheck.isEmpty())
+        if (pw.isEmpty() || pwCheck.isEmpty()) {
+            binding.btnSignupPwNext.setBackgroundResource(R.drawable.disable_btn)
+        } else {
+            binding.btnSignupPwNext.setBackgroundResource(R.drawable.able_btn)
         }
     }
 
@@ -64,8 +116,8 @@ class SignUpPwFragment : Fragment() {
                         //다음
                     }
 
-                    400 -> {
-                        binding.tvSignupPwNo.visibility = View.INVISIBLE
+                    400, 500 -> {
+                        binding.tvSignupPwCheck.text = R.string.check_password.toString()
                         binding.tvSignupPwCheck.visibility = View.VISIBLE
                     }
                 }
