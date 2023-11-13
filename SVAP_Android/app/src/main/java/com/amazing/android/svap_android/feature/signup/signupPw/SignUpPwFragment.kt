@@ -4,17 +4,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.amazing.android.svap_android.R
 import com.amazing.android.svap_android.api.ApiProvider
 import com.amazing.android.svap_android.api.AuthAPI
 import com.amazing.android.svap_android.databinding.FragmentSignUpPwBinding
 import com.amazing.android.svap_android.feature.login.LoginActivity
+import com.amazing.android.svap_android.feature.signup.signupName.SignUpNameFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,6 +26,7 @@ class SignUpPwFragment : Fragment() {
     lateinit var binding: FragmentSignUpPwBinding
     private val retrofit: Retrofit = ApiProvider.getInstance()
     private val api: AuthAPI = retrofit.create(AuthAPI::class.java)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -107,14 +109,17 @@ class SignUpPwFragment : Fragment() {
 
     private fun sever(pw: String) {
         api.ckPassword(
-            CkPasswordRequest(
+            SignUpPwRequest(
                 password = pw,
             )
         ).enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 when (response.code()) {
                     200 -> {
-                        //다음
+                        val fragmentTransaction: FragmentTransaction? =
+                            activity?.supportFragmentManager?.beginTransaction()
+                        fragmentTransaction?.replace(R.id.fl_signup, SignUpNameFragment());
+                        fragmentTransaction?.commit()
                     }
 
                     400, 500 -> {
