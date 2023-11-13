@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +20,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import retrofit2.create
 
 class SignUpIdFragment : Fragment() {
 
@@ -59,14 +57,14 @@ class SignUpIdFragment : Fragment() {
 
     private fun initNextBtn() {
 
-        binding.etSignupIdId.addTextChangedListener(object: TextWatcher{
+        binding.etSignupIdId.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 binding.btnSignupIdNext.isEnabled = binding.etSignupIdId.text.isNotEmpty()
-                if(binding.etSignupIdId.text.isEmpty()) {
+                if (binding.etSignupIdId.text.isEmpty()) {
                     binding.btnSignupIdNext.setBackgroundResource(R.drawable.disable_btn)
-                }else {
+                } else {
                     binding.btnSignupIdNext.setBackgroundResource(R.drawable.able_btn)
                 }
             }
@@ -85,16 +83,17 @@ class SignUpIdFragment : Fragment() {
             SignUpIdRequest(
                 username = username
             )
-        ).enqueue(object : Callback<Void>{
+        ).enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                when(response.code()) {
-                    200-> {
+                when (response.code()) {
+                    200 -> {
                         val fragmentTransaction: FragmentTransaction? =
                             activity?.supportFragmentManager?.beginTransaction()
                         fragmentTransaction?.replace(R.id.fl_signup, SignUpPwFragment());
                         fragmentTransaction?.commit()
                     }
-                    400,500-> {
+
+                    400, 500 -> {
                         binding.tvSignupIdCheck.visibility = View.VISIBLE
                     }
                 }
