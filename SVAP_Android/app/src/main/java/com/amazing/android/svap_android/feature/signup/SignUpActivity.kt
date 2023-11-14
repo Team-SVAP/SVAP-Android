@@ -1,12 +1,11 @@
 package com.amazing.android.svap_android.feature.signup
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import com.amazing.android.svap_android.R
 import com.amazing.android.svap_android.databinding.ActivitySignUpBinding
+import com.amazing.android.svap_android.feature.signup.signupId.SignUpIdFragment
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -22,7 +21,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun initFragmentManager() {
-        val fragmentTransaction : FragmentTransaction = supportFragmentManager.beginTransaction()
+        val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fl_signup, SignUpIdFragment());
         fragmentTransaction.commit()
     }

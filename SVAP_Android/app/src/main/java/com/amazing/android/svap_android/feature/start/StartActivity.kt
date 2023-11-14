@@ -1,4 +1,4 @@
-package com.amazing.android.svap_android
+package com.amazing.android.svap_android.feature.start
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
