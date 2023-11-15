@@ -15,6 +15,8 @@ import com.amazing.android.svap_android.api.ApiProvider
 import com.amazing.android.svap_android.api.AuthAPI
 import com.amazing.android.svap_android.databinding.FragmentSignUpNameBinding
 import com.amazing.android.svap_android.feature.login.LoginActivity
+import com.amazing.android.svap_android.feature.signup.SignUpRequest
+import com.amazing.android.svap_android.feature.signup.SignUpResponse
 import com.amazing.android.svap_android.feature.signup.signupId.SignUpIdRequest
 import com.amazing.android.svap_android.feature.signup.signupPw.SignUpPwFragment
 import retrofit2.Call
@@ -74,20 +76,32 @@ class SignUpNameFragment : Fragment() {
 
         binding.btnSignupIdNext.setOnClickListener {
             val username = binding.etSignupNameName.text.toString()
-            sever(username)
+            val accountId = arguments?.getString("accountId")
+            val password = arguments?.getString("password")
+            if (accountId != null && password != null) {
+                sever(username,accountId,password)
+            }else {
+                Toast.makeText(context,"이름 비번 널",Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
-    private fun sever(name: String) {
-        api.ckName(
-            SignUpNameRequest(
-                username = name
+    private fun sever(name: String,accountId: String, password: String) {
+        api.signup(
+            SignUpRequest(
+                username = name,
+                accountId = accountId,
+                password = password,
             )
-        ).enqueue(object : Callback<Void> {
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+        ).enqueue(object : Callback<SignUpResponse> {
+            override fun onResponse(
+                call: Call<SignUpResponse>,
+                response: Response<SignUpResponse>
+            ) {
                 when (response.code()) {
                     200 -> {
-                        //회원가입
+                        //성공
+
                     }
                     400, 500 -> {
                         binding.tvSignupNameCheck.text = resources.getString(R.string.name_check)
@@ -95,7 +109,7 @@ class SignUpNameFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<Void>, t: Throwable) {
+            override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
                 Toast.makeText(context, R.string.fail_sever, Toast.LENGTH_SHORT).show()
             }
         })

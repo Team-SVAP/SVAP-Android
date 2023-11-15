@@ -83,6 +83,9 @@ class SignUpIdFragment : Fragment() {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 when (response.code()) {
                     200 -> {
+                        val bundle = Bundle()
+                        bundle.putString("accountId",accountId)
+
                         val fragmentTransaction: FragmentTransaction? =
                             activity?.supportFragmentManager?.beginTransaction()
                         fragmentTransaction?.replace(R.id.fl_signup, SignUpPwFragment());
