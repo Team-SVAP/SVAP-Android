@@ -4,12 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.Fragment
+import com.amazing.android.svap_android.MainActivity
 import com.amazing.android.svap_android.R
 import com.amazing.android.svap_android.api.ApiProvider
 import com.amazing.android.svap_android.api.AuthAPI
@@ -17,8 +17,6 @@ import com.amazing.android.svap_android.databinding.FragmentSignUpNameBinding
 import com.amazing.android.svap_android.feature.login.LoginActivity
 import com.amazing.android.svap_android.feature.signup.SignUpRequest
 import com.amazing.android.svap_android.feature.signup.SignUpResponse
-import com.amazing.android.svap_android.feature.signup.signupId.SignUpIdRequest
-import com.amazing.android.svap_android.feature.signup.signupPw.SignUpPwFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,16 +27,10 @@ class SignUpNameFragment : Fragment() {
     lateinit var binding: FragmentSignUpNameBinding
     private val retrofit: Retrofit = ApiProvider.getInstance()
     private val api: AuthAPI = retrofit.create(AuthAPI::class.java)
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentSignUpNameBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -58,7 +50,6 @@ class SignUpNameFragment : Fragment() {
     }
 
     private fun initNextBtn() {
-
         binding.etSignupNameName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
@@ -78,15 +69,13 @@ class SignUpNameFragment : Fragment() {
             val username = binding.etSignupNameName.text.toString()
             val accountId = arguments?.getString("accountId")
             val password = arguments?.getString("password")
-            if (accountId != null && password != null) {
-                sever(username,accountId,password)
-            }else {
-                Toast.makeText(context,"이름 비번 널",Toast.LENGTH_SHORT).show()
+            if (accountId != null && password != null) sever(username, accountId, password) else {
+                Toast.makeText(context, "이름 비번 널", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun sever(name: String,accountId: String, password: String) {
+    private fun sever(name: String, accountId: String, password: String) {
         api.signup(
             SignUpRequest(
                 username = name,
@@ -100,9 +89,11 @@ class SignUpNameFragment : Fragment() {
             ) {
                 when (response.code()) {
                     200 -> {
-                        //성공
-
+                        Toast.makeText(context, R.string.success_signup, Toast.LENGTH_SHORT).show()
+                        val intent = Intent(context, MainActivity::class.java)
+                        startActivity(intent)
                     }
+
                     400, 500 -> {
                         binding.tvSignupNameCheck.text = resources.getString(R.string.name_check)
                     }
