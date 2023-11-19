@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.amazing.android.svap_android.R
 import com.amazing.android.svap_android.api.ApiProvider
-import com.amazing.android.svap_android.api.AuthAPI
+import com.amazing.android.svap_android.api.UserApi
 import com.amazing.android.svap_android.databinding.FragmentSignUpPwBinding
 import com.amazing.android.svap_android.feature.login.LoginActivity
 import com.amazing.android.svap_android.feature.signup.signupName.SignUpNameFragment
@@ -25,7 +25,7 @@ class SignUpPwFragment : Fragment() {
 
     lateinit var binding: FragmentSignUpPwBinding
     private val retrofit: Retrofit = ApiProvider.getInstance()
-    private val api: AuthAPI = retrofit.create(AuthAPI::class.java)
+    private val api: UserApi = retrofit.create(UserApi::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

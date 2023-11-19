@@ -32,5 +32,5 @@ object ApiProvider {
 
     }
 
-    fun getAuthApi() = getInstance().create(AuthAPI::class.java)
+    fun getAuthApi() = getInstance().create(UserApi::class.java)
 }

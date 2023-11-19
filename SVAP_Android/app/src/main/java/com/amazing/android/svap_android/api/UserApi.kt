@@ -11,7 +11,7 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
 
-interface AuthAPI {
+interface UserApi {
 
     @POST("/user/login") //로그인
     fun login(

@@ -4,13 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.amazing.android.svap_android.MainActivity
 import com.amazing.android.svap_android.R
 import com.amazing.android.svap_android.api.ApiProvider
-import com.amazing.android.svap_android.api.AuthAPI
+import com.amazing.android.svap_android.api.UserApi
 import com.amazing.android.svap_android.databinding.ActivityLoginBinding
 import com.amazing.android.svap_android.feature.signup.SignUpActivity
 import retrofit2.Call
@@ -21,7 +20,7 @@ import retrofit2.Retrofit
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val retrofit: Retrofit = ApiProvider.getInstance()
-    private val api: AuthAPI = retrofit.create(AuthAPI::class.java)
+    private val api: UserApi = retrofit.create(UserApi::class.java)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
