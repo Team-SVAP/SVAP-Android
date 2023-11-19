@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".feature.login.LoginActivity">
 
+    <ImageView
+        android:id="@+id/iv_login"
+        android:layout_width="126dp"
+        android:layout_height="45dp"
+        android:src="@drawable/svap_icon"
+        android:layout_marginTop="115dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
     <TextView
         android:id="@+id/tv_login"
         android:layout_width="wrap_content"
@@ -15,9 +24,9 @@
         android:textColor="@color/gray_700"
         android:textSize="16sp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="68dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/iv_login"/>
     
     <EditText
         android:id="@+id/et_login_id"
