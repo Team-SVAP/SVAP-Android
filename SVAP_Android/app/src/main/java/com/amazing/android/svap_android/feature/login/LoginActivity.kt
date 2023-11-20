@@ -6,7 +6,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.amazing.android.svap_android.MainActivity
+import com.amazing.android.svap_android.feature.main.MainActivity
 import com.amazing.android.svap_android.R
 import com.amazing.android.svap_android.api.ApiProvider
 import com.amazing.android.svap_android.api.UserApi
