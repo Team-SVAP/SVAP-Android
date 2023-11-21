@@ -14,14 +14,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/ib_my_petition_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/back_icon"
-            android:background="@android:color/transparent"
-            android:layout_marginStart="20dp"/>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,6 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="20dp"
+        tools:listitem="@layout/my_petition_item"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tb_my_petition"
@@ -45,13 +38,13 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="60dp"
         android:layout_height="60dp"
-        app:fabSize="normal"
         android:layout_marginBottom="24dp"
         android:layout_marginEnd="24dp"
         android:src="@drawable/up_line"
-        app:fabCustomSize="@dimen/fab_size"
         android:background="@drawable/float_btn"
         android:backgroundTint="@color/main_3"
+        app:fabSize="normal"
+        app:fabCustomSize="@dimen/fab_size"
         app:elevation="0dp"
         app:tint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
