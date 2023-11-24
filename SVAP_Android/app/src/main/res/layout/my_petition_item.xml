@@ -1,6 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/item_frame"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_my_petition_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="새롬홀 의자 딱딱쓰"
+            android:textColor="@color/gray_800"
+            android:textSize="14sp"
+            android:fontFamily="@font/ibm_medium"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_my_petition_item_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2023-09-13"
+            android:fontFamily="@font/ibm_medium"
+            android:textSize="10sp"
+            android:textColor="@color/gray_800"
+            android:layout_marginEnd="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_my_petition_item_title"
+            app:layout_constraintBottom_toBottomOf="@id/tv_my_petition_item_title"/>
+
+        <TextView
+            android:id="@+id/tv_my_petition_item_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="#학교_새롬홀"
+            android:fontFamily="@font/ibm_medium"
+            android:textSize="12sp"
+            android:textColor="@color/main_1"
+            app:layout_constraintStart_toStartOf="@id/tv_my_petition_item_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_petition_item_title"/>
+
+        <TextView
+            android:id="@+id/tv_my_petition_item_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="현재 우리나라는 김대중 전 대통룔부터 쿠쿠루삥뽕 사형집행  중비했지롱 eeijrnwiejrnfdsdsfeqweqweqwfgkkkkkk"
+            android:textColor="@color/gray_600"
+            android:textSize="8sp"
+            android:fontFamily="@font/ibm_medium"
+            android:maxLines="1"
+            android:ellipsize="none"
+            android:layout_marginTop="4dp"
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="@id/tv_my_petition_item_tag"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_petition_item_tag"
+            app:layout_constraintEnd_toEndOf="@id/tv_my_petition_item_date"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
