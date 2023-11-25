@@ -1,13 +1,12 @@
 package com.amazing.android.svap_android.feature.myPetition
 
 import com.amazing.android.svap_android.type.Type
-import java.time.LocalDateTime
 
-data class MyPetitionResponse (
+data class MyPetitionResponse(
     val id: String,
     val title: String,
     val content: String,
-    val dateTime: LocalDateTime,
+    val dateTime: String,
     val types: Type,
     val location: String,
 )
