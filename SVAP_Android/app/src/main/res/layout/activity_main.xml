@@ -38,19 +38,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tb_main"/>
 
-            <EditText
-                android:id="@+id/et_main_search"
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/sv_main_search"
                 android:layout_width="0dp"
                 android:layout_height="44dp"
                 android:layout_marginTop="24dp"
-                android:hint="@string/search_petition"
-                android:paddingStart="20dp"
                 android:fontFamily="@font/ibm_regular"
                 android:textSize="12sp"
                 android:background="@drawable/search_round"
-                android:drawableEnd="@drawable/tabler_search"
-                android:paddingEnd="20dp"
-                android:singleLine="true"
+                android:layoutDirection="rtl"
+                app:iconifiedByDefault="false"
+                app:queryHint="@string/search_petition"
+                app:searchIcon="@drawable/tabler_search"
                 app:layout_constraintStart_toStartOf="@id/vp_main"
                 app:layout_constraintEnd_toEndOf="@id/vp_main"
                 app:layout_constraintTop_toBottomOf="@id/vp_main"/>
@@ -71,8 +70,8 @@
                 android:paddingEnd="45dp"
                 android:paddingStart="45dp"
                 android:drawablePadding="4dp"
-                app:layout_constraintStart_toStartOf="@id/et_main_search"
-                app:layout_constraintTop_toBottomOf="@id/et_main_search"
+                app:layout_constraintStart_toStartOf="@id/sv_main_search"
+                app:layout_constraintTop_toBottomOf="@id/sv_main_search"
                 app:layout_constraintEnd_toStartOf="@id/btn_main_write" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -91,8 +90,8 @@
                 android:drawablePadding="4dp"
                 android:paddingStart="45dp"
                 android:paddingEnd="45dp"
-                app:layout_constraintEnd_toEndOf="@id/et_main_search"
-                app:layout_constraintTop_toBottomOf="@id/et_main_search"
+                app:layout_constraintEnd_toEndOf="@id/sv_main_search"
+                app:layout_constraintTop_toBottomOf="@id/sv_main_search"
                 app:layout_constraintStart_toEndOf="@id/btn_main_show"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
