@@ -6,4 +6,118 @@
     android:layout_height="match_parent"
     tools:context=".feature.showPetition.ShowPetitionActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_show_petition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/ib_show_petition_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_icon"
+            android:background="@android:color/transparent"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_petition"
+            android:textSize="14sp"
+            android:textColor="@color/gray_800"
+            android:fontFamily="@font/ibm_medium"
+            android:layout_gravity="center"/>
+    </androidx.appcompat.widget.Toolbar>
+    
+    <EditText
+        android:id="@+id/et_show_petition_search"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/focus_edit_text"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:hint="@string/search_petition"
+        android:paddingStart="20dp"
+        android:textSize="12sp"
+        android:textColor="@color/gray_800"
+        android:fontFamily="@font/ibm_medium"
+        android:drawableRight="@drawable/tabler_search"
+        android:paddingRight="20dp"
+        app:layout_constraintTop_toBottomOf="@id/tb_show_petition"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Spinner
+        android:id="@+id/spinner_show_petition"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        app:layout_constraintStart_toStartOf="@id/et_show_petition_search"
+        app:layout_constraintTop_toBottomOf="@id/et_show_petition_search"/>
+
+    <LinearLayout
+        android:id="@+id/linear_show_petition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@id/et_show_petition_search"
+        app:layout_constraintTop_toTopOf="@id/spinner_show_petition">
+
+        <TextView
+            android:id="@+id/tv_show_petition_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/all_petition"
+            android:textColor="@color/main_1"
+            android:textSize="14sp"
+            android:fontFamily="@font/ibm_medium"/>
+
+        <TextView
+            android:id="@+id/tv_show_petition_school"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/school_petition"
+            android:textColor="@color/gray_400"
+            android:textSize="14sp"
+            android:fontFamily="@font/ibm_medium"
+            android:layout_marginStart="8dp"/>
+
+        <TextView
+            android:id="@+id/tv_show_petition_dormitory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dormitory_petition"
+            android:textColor="@color/gray_400"
+            android:textSize="14sp"
+            android:fontFamily="@font/ibm_medium"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        tools:listitem="@layout/show_petition_item"
+        app:layout_constraintStart_toStartOf="@id/spinner_show_petition"
+        app:layout_constraintEnd_toEndOf="@id/linear_show_petition"
+        app:layout_constraintTop_toBottomOf="@id/spinner_show_petition"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatBtn_show_petition"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="24dp"
+        android:src="@drawable/up_line"
+        android:background="@drawable/float_btn"
+        android:backgroundTint="@color/main_3"
+        app:fabSize="normal"
+        app:fabCustomSize="@dimen/fab_size"
+        app:elevation="0dp"
+        app:tint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
