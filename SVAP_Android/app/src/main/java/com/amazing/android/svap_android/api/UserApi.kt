@@ -2,6 +2,7 @@ package com.amazing.android.svap_android.api
 
 import com.amazing.android.svap_android.feature.login.LoginRequest
 import com.amazing.android.svap_android.feature.login.LoginResponse
+import com.amazing.android.svap_android.feature.main.UserInfoResponse
 import com.amazing.android.svap_android.feature.myPetition.MyPetitionResponse
 import com.amazing.android.svap_android.feature.signup.SignUpRequest
 import com.amazing.android.svap_android.feature.signup.SignUpResponse
@@ -45,4 +46,9 @@ interface UserApi {
     fun showMyPetition(
         @Header("Authorization") accessToken: String
     ): Call<List<MyPetitionResponse>>
+
+    @GET("/user/my-info")
+    fun myInfo(
+        @Header("Authorization") accessToken: String
+    ): Call<UserInfoResponse>
 }
