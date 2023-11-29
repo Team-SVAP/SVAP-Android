@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-  
+
+    <item
+        android:id="@+id/main_menu_home"
+        android:icon="@drawable/grid_line"
+        android:title="@string/home"/>
+
+    <item
+        android:id="@+id/main_menu_write"
+        android:icon="@drawable/write_petition"
+        android:title="@string/write_petition"/>
+
+    <item
+        android:id="@+id/main_menu_show"
+        android:icon="@drawable/show_petition"
+        android:title="@string/show_petition"/>
+
+    <item
+        android:id="@+id/main_menu_my_page"
+        android:icon="@drawable/my_page"
+        android:title="@string/my_page"/>
 </menu>
