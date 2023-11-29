@@ -1,14 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".feature.home.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <include
+        android:id="@+id/tb_home"
+        layout="@layout/main_tool_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-</FrameLayout>
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vp_home"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintDimensionRatio="32:15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tb_home"/>
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/sv_home_search"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/ibm_regular"
+        android:textSize="12sp"
+        android:background="@drawable/search_round"
+        android:layoutDirection="rtl"
+        app:iconifiedByDefault="false"
+        app:queryHint="@string/search_petition"
+        app:searchIcon="@drawable/tabler_search"
+        app:layout_constraintStart_toStartOf="@id/vp_home"
+        app:layout_constraintEnd_toEndOf="@id/vp_home"
+        app:layout_constraintTop_toBottomOf="@id/vp_home"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@id/sv_home_search"
+        app:layout_constraintEnd_toEndOf="@id/sv_home_search"
+        app:layout_constraintTop_toBottomOf="@id/sv_home_search">
+
+        <TextView
+            android:id="@+id/tv_home_popular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/popularity_petition"
+            android:fontFamily="@font/ibm_medium"
+            android:textSize="12sp"
+            android:textColor="@color/gray_600"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/see_more"
+            android:fontFamily="@font/ibm_medium"
+            android:textColor="@color/gray_600"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_home_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:fontFamily="@font/ibm_semibold"
+            android:textColor="@color/gray_800"
+            android:layout_marginTop="15dp"
+            app:layout_constraintStart_toStartOf="@id/tv_home_popular"
+            app:layout_constraintTop_toBottomOf="@id/tv_home_popular"/>
+
+        <TextView
+            android:id="@+id/tv_home_context"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:textSize="12sp"
+            android:textColor="@color/gray_700"
+            android:fontFamily="@font/ibm_medium"
+            app:layout_constraintTop_toBottomOf="@id/tv_home_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/see_more"
+            android:textColor="@color/gray_700"
+            android:textSize="12sp"
+            android:fontFamily="@font/ibm_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
