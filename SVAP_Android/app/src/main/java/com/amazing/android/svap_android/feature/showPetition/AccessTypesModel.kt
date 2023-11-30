@@ -1,4 +1,6 @@
 package com.amazing.android.svap_android.feature.showPetition
 
-class AccessTypesModel {
-}
+data class AccessTypesModel(
+    val name: String,
+    val type: String,
+)
