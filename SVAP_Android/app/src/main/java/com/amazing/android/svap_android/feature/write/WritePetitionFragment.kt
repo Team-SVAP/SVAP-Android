@@ -1,60 +1,125 @@
 package com.amazing.android.svap_android.feature.write
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
 import com.amazing.android.svap_android.R
+import com.amazing.android.svap_android.databinding.FragmentWritePetitionBinding
+import com.amazing.android.svap_android.type.Type
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [WritePetitionFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class WritePetitionFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding: FragmentWritePetitionBinding
+    private lateinit var typeAdapter: TypeSpinnerAdapter
+    private val listOfType = ArrayList<PetitionTypeModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private val REQUEST_CODE = 1
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_write_petition, container, false)
+    ): View {
+        binding = FragmentWritePetitionBinding.inflate(layoutInflater)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment WritePetitionFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            WritePetitionFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initSpinner()
+        initSpinnerHandler()
+        binding.ibWritePetitionGallery.setOnClickListener { openGallery() }
+    }
+
+    private fun initSpinnerHandler() {
+        binding.spinnerWritePetition.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    //클릭
+                    val type =
+                        binding.spinnerWritePetition.getItemAtPosition(position) as PetitionTypeModel
+                    if (!type.name.equals("")) {
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+
                 }
             }
     }
+
+    private fun initSpinner() {
+        val school = PetitionTypeModel("학교 청원", Type.SCHOOL)
+        listOfType.add(school)
+
+        val dormitory = PetitionTypeModel("기숙사 청원", Type.DORMITORY)
+        listOfType.add(dormitory)
+
+        typeAdapter = TypeSpinnerAdapter(requireContext(), R.layout.petition_type_item, listOfType)
+        binding.spinnerWritePetition.adapter = typeAdapter
+    }
+
+    private fun openGallery() {
+        //requestPermission()
+        locationResultLauncher.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(intent, REQUEST_CODE)
+    }
+
+    /*private fun requestPermission() {
+            val locationResultLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) {
+            if(!it) {
+                Toast.makeText(this, "스토리지에 접근 권한을 허가해주세요", Toast.LENGTH_SHORT).show()
+            }
+        }
+        locationResultLauncher.launch(
+            android.Manifest.permission.READ_EXTERNAL_STORAGE
+        )
+    }*/
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode != Activity.RESULT_OK) {
+            return
+        }
+
+        when (requestCode) {
+            REQUEST_CODE -> {
+                data ?: return
+                val uri = data.data as Uri
+            }
+
+            else -> {
+                Toast.makeText(context, "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private val locationResultLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+            if (!it) {
+                Toast.makeText(context, "스토리지에 접근 권한을 허가해주세요", Toast.LENGTH_SHORT).show()
+            }
+        }
+
 }
