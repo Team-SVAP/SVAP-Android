@@ -1,60 +1,105 @@
 package com.amazing.android.svap_android.feature.home
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
 import com.amazing.android.svap_android.R
+import com.amazing.android.svap_android.api.ApiProvider
+import com.amazing.android.svap_android.api.PetitionApi
+import com.amazing.android.svap_android.databinding.FragmentHomeBinding
+import com.amazing.android.svap_android.feature.main.PopularPetitionResponse
+import com.amazing.android.svap_android.feature.showPetition.ShowPetitionActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    lateinit var binding: FragmentHomeBinding
+    private val retrofit: Retrofit = ApiProvider.getInstance()
+    private val petitionApi: PetitionApi = retrofit.create(PetitionApi::class.java)
+
+    private lateinit var viewPager2: ViewPager2
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+    ): View {
+        binding = FragmentHomeBinding.inflate(layoutInflater)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initSearch()
+        initViewPager()
+        initPopularPetition()
+    }
+
+    private fun initSearch() {
+        binding.svHomeSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                //검색 버튼 누를때
+                if (query != null) performSearch(query)
+                //performSearch(query)
+                return true
             }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                //검색창에서 글자 변경될때
+                return true
+            }
+        })
+    }
+
+    private fun performSearch(text: String) {
+        val intent = Intent(context, ShowPetitionActivity::class.java)
+        intent.putExtra("search", text)
+        startActivity(intent)
+    }
+
+    private fun initViewPager() {
+        viewPager2 = binding.vpHome
+        binding.vpHome.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
+        val images =
+            listOf(R.drawable.main_pager_1, R.drawable.main_pager_2, R.drawable.main_pager_3)
+        val adapter = HomePagerAdapter(images)
+        viewPager2.adapter = adapter
+
+        val handler = Handler(Looper.getMainLooper())
+        handler.postDelayed(object : Runnable {
+            override fun run() {
+                viewPager2.currentItem = (viewPager2.currentItem + 1) % images.size
+                handler.postDelayed(this, 3000)
+            }
+        }, 3000)
+    }
+
+    private fun initPopularPetition() {
+        petitionApi.popularPetition().enqueue(object : Callback<PopularPetitionResponse> {
+            override fun onResponse(
+                call: Call<PopularPetitionResponse>,
+                response: Response<PopularPetitionResponse>
+            ) {
+                binding.tvHomeTitle.text = response.body()?.title
+                binding.tvHomeContent.text = response.body()?.content
+            }
+
+            override fun onFailure(call: Call<PopularPetitionResponse>, t: Throwable) {
+                Toast.makeText(context, R.string.fail_sever, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }

@@ -1,4 +1,4 @@
-package com.amazing.android.svap_android.feature.main
+package com.amazing.android.svap_android.feature.home
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.amazing.android.svap_android.R
 
-class MainPagerAdapter(private val images: List<Int>) : RecyclerView.Adapter<MainPagerAdapter.MainPagerHolder>() {
+class HomePagerAdapter(private val images: List<Int>) : RecyclerView.Adapter<HomePagerAdapter.MainPagerHolder>() {
 
     inner class MainPagerHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageView: ImageView = view.findViewById(R.id.iv_main_pager_item)
