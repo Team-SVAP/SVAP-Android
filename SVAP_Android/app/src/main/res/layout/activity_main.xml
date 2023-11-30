@@ -5,173 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/main_drawer_layout"
+    <FrameLayout
+        android:id="@+id/frame_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:openDrawer="end"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/nav_home"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".feature.main.MainActivity">
-
-            <include
-                android:id="@+id/tb_main"
-                layout="@layout/main_tool_bar"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/vp_main"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="20dp"
-                app:layout_constraintDimensionRatio="32:15"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tb_main"/>
-
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/sv_main_search"
-                android:layout_width="0dp"
-                android:layout_height="44dp"
-                android:layout_marginTop="24dp"
-                android:fontFamily="@font/ibm_regular"
-                android:textSize="12sp"
-                android:background="@drawable/search_round"
-                android:layoutDirection="rtl"
-                app:iconifiedByDefault="false"
-                app:queryHint="@string/search_petition"
-                app:searchIcon="@drawable/tabler_search"
-                app:layout_constraintStart_toStartOf="@id/vp_main"
-                app:layout_constraintEnd_toEndOf="@id/vp_main"
-                app:layout_constraintTop_toBottomOf="@id/vp_main"/>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_main_show"
-                android:layout_width="0dp"
-                android:layout_height="90dp"
-                android:elevation="2dp"
-                android:background="@drawable/ibtn_main_petition"
-                android:text="@string/show_petition"
-                android:fontFamily="@font/ibm_medium"
-                android:textSize="16sp"
-                android:textColor="@color/gray_700"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="10dp"
-                android:drawableEnd="@drawable/community"
-                android:paddingEnd="45dp"
-                android:paddingStart="45dp"
-                android:drawablePadding="4dp"
-                app:layout_constraintStart_toStartOf="@id/sv_main_search"
-                app:layout_constraintTop_toBottomOf="@id/sv_main_search"
-                app:layout_constraintEnd_toStartOf="@id/btn_main_write" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_main_write"
-                android:layout_width="0dp"
-                android:layout_height="90dp"
-                android:background="@drawable/ibtn_main_petition"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="10dp"
-                android:elevation="2dp"
-                android:text="@string/write_petition"
-                android:fontFamily="@font/ibm_medium"
-                android:textColor="@color/gray_700"
-                android:textSize="16sp"
-                android:drawableEnd="@drawable/write_petition"
-                android:drawablePadding="4dp"
-                android:paddingStart="45dp"
-                android:paddingEnd="45dp"
-                app:layout_constraintEnd_toEndOf="@id/sv_main_search"
-                app:layout_constraintTop_toBottomOf="@id/sv_main_search"
-                app:layout_constraintStart_toEndOf="@id/btn_main_show"/>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="44dp"
-                android:layout_marginBottom="24dp"
-                app:layout_constraintStart_toStartOf="@id/btn_main_show"
-                app:layout_constraintEnd_toEndOf="@id/btn_main_write"
-                app:layout_constraintTop_toBottomOf="@id/btn_main_show"
-                app:layout_constraintBottom_toBottomOf="parent">
-
-                <TextView
-                    android:id="@+id/tv_main_popular"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/popularity_petition"
-                    android:fontFamily="@font/ibm_medium"
-                    android:textSize="12sp"
-                    android:textColor="@color/gray_600"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/see_more"
-                    android:fontFamily="@font/ibm_medium"
-                    android:textColor="@color/gray_600"
-                    android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-                <TextView
-                    android:id="@+id/tv_main_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:fontFamily="@font/ibm_semibold"
-                    android:textColor="@color/gray_800"
-                    android:layout_marginTop="15dp"
-                    app:layout_constraintStart_toStartOf="@id/tv_main_popular"
-                    app:layout_constraintTop_toBottomOf="@id/tv_main_popular"/>
-
-                <TextView
-                    android:id="@+id/tv_main_context"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:ellipsize="end"
-                    android:textSize="12sp"
-                    android:textColor="@color/gray_700"
-                    android:fontFamily="@font/ibm_medium"
-                    app:layout_constraintTop_toBottomOf="@id/tv_main_title"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/see_more"
-                    android:textColor="@color/gray_700"
-                    android:textSize="12sp"
-                    android:fontFamily="@font/ibm_medium"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/main_navigation_view"
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="end"
-            app:menu="@menu/main_nav_menu_list"
-            app:headerLayout="@layout/main_nav_header"
-            app:itemTextAppearance="@font/ibm_regular"
-            app:itemTextColor="@color/black"/>
-    </androidx.drawerlayout.widget.DrawerLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_transparent"
+        app:itemRippleColor="@null"
+        app:menu="@menu/main_bottom_menu"
+        app:itemIconTint="@color/selector_bottom_nav_menu_color"
+        app:itemTextColor="@color/selector_bottom_nav_menu_color"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
