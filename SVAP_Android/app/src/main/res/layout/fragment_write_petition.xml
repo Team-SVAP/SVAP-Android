@@ -102,8 +102,10 @@
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/focus_edit_text"
+        android:background="@drawable/focus_spinner"
         android:layout_marginEnd="10dp"
+        android:popupBackground="@drawable/focus_spinner"
+        android:spinnerMode="dropdown"
         app:layout_constraintStart_toStartOf="@id/tv_write_petition_type"
         app:layout_constraintTop_toBottomOf="@id/tv_write_petition_type"
         app:layout_constraintEnd_toStartOf="@id/et_write_petition_location"/>

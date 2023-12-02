@@ -102,7 +102,7 @@
             android:textSize="12sp"
             android:fontFamily="@font/ibm_medium"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_home_content"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
