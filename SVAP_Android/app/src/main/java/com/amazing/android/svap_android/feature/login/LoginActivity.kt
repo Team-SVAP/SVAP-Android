@@ -6,11 +6,11 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.amazing.android.svap_android.feature.main.MainActivity
 import com.amazing.android.svap_android.R
 import com.amazing.android.svap_android.api.ApiProvider
 import com.amazing.android.svap_android.api.UserApi
 import com.amazing.android.svap_android.databinding.ActivityLoginBinding
+import com.amazing.android.svap_android.feature.main.MainActivity
 import com.amazing.android.svap_android.feature.signup.SignUpActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun gotoSignup() {
         binding.tvLoginGoSignUp.setOnClickListener {
-            val intent = Intent(this,SignUpActivity::class.java)
+            val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
     }
@@ -95,24 +95,40 @@ class LoginActivity : AppCompatActivity() {
             )
         ).enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                when(response.code()) {
-                    200-> {
+                when (response.code()) {
+                    201 -> {
+                        val sharedPreference = getSharedPreferences("token", 0)
+                        val edit = sharedPreference.edit()
+                        edit.putString("accessToken", response.body()?.accessToken)
+                        edit.putString("refreshToken", response.body()?.refreshToken)
+                        edit.apply()
+
                         Toast.makeText(baseContext, "로그인에 성공하였습니다", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         startActivity(intent)
                         finish()
                     }
-                    400-> {
+
+                    400 -> {
                         binding.tvLoginCheck.text = resources.getString(R.string.check_id_pw)
                     }
-                    401-> {
+
+                    401 -> {
                         binding.tvLoginCheck.text = resources.getString(R.string.mismatch_password)
+                    }
+
+                    403 -> {
+                        Toast.makeText(baseContext, R.string.ban_account, Toast.LENGTH_SHORT).show()
+                    }
+
+                    404 -> {
+                        Toast.makeText(baseContext, R.string.no_user, Toast.LENGTH_SHORT).show()
                     }
                 }
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                Toast.makeText(baseContext, "로그인에 실패하였습니다", Toast.LENGTH_SHORT).show()
+                Toast.makeText(baseContext, R.string.fail_sever, Toast.LENGTH_SHORT).show()
             }
         })
     }
