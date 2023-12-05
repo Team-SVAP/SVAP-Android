@@ -21,7 +21,8 @@
             android:layout_gravity="center"
             android:textColor="@color/gray_800"
             android:textSize="14sp"
-            android:fontFamily="@font/ibm_medium"/>
+            android:fontFamily="@font/ibm_medium"
+            android:enabled="false"/>
 
         <TextView
             android:id="@+id/tv_write_petition_complete"
@@ -206,5 +207,15 @@
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="@id/tv_write_petition_picture"
         app:layout_constraintTop_toBottomOf="@id/tv_write_petition_picture"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_write_petition"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_marginStart="12dp"
+        app:layout_constraintStart_toEndOf="@id/ib_write_petition_gallery"
+        app:layout_constraintTop_toTopOf="@id/ib_write_petition_gallery"
+        app:layout_constraintBottom_toBottomOf="@id/ib_write_petition_gallery"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
