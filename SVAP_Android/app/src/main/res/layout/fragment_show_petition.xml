@@ -27,7 +27,7 @@
     <EditText
         android:id="@+id/et_show_petition_search"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginTop="18dp"
         android:background="@drawable/focus_edit_text"
         android:layout_marginStart="20dp"
@@ -43,21 +43,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <Spinner
-        android:id="@+id/spinner_show_petition"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        app:layout_constraintStart_toStartOf="@id/et_show_petition_search"
-        app:layout_constraintTop_toBottomOf="@id/et_show_petition_search"/>
-
     <LinearLayout
         android:id="@+id/linear_show_petition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@id/et_show_petition_search"
-        app:layout_constraintTop_toTopOf="@id/spinner_show_petition">
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@id/et_show_petition_search"
+        app:layout_constraintTop_toBottomOf="@id/et_show_petition_search">
 
         <TextView
             android:id="@+id/tv_show_petition_all"
@@ -89,14 +82,28 @@
             android:layout_marginStart="8dp"/>
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/tv_show_petition_sort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="최신순"
+        android:textColor="@color/gray_800"
+        android:textSize="10sp"
+        android:fontFamily="@font/ibm_regular"
+        android:drawablePadding="2dp"
+        app:layout_constraintEnd_toEndOf="@id/et_show_petition_search"
+        app:layout_constraintTop_toTopOf="@id/linear_show_petition"
+        app:layout_constraintBottom_toBottomOf="@id/linear_show_petition"
+        app:drawableStartCompat="@drawable/switch_icon" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="10dp"
         tools:listitem="@layout/show_petition_item"
-        app:layout_constraintStart_toStartOf="@id/spinner_show_petition"
-        app:layout_constraintEnd_toEndOf="@id/linear_show_petition"
-        app:layout_constraintTop_toBottomOf="@id/spinner_show_petition"/>
+        app:layout_constraintStart_toStartOf="@id/linear_show_petition"
+        app:layout_constraintEnd_toEndOf="@id/tv_show_petition_sort"
+        app:layout_constraintTop_toBottomOf="@id/linear_show_petition"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatBtn_show_petition"
