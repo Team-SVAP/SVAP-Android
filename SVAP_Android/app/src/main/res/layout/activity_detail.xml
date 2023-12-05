@@ -6,4 +6,210 @@
     android:layout_height="match_parent"
     tools:context=".feature.detail.DetailActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/ib_detail_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_icon"
+            android:background="@android:color/transparent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/detail_show"
+            android:layout_gravity="center"
+            android:textColor="@color/gray_800"
+            android:textSize="14sp"
+            android:fontFamily="@font/ibm_medium"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@id/tb_detail"
+        app:layout_constraintEnd_toEndOf="@id/tb_detail"
+        app:layout_constraintTop_toBottomOf="@id/tb_detail"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+
+            <TextView
+                android:id="@+id/tv_detail_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="# 기숙사_화장실"
+                android:textSize="14sp"
+                android:textColor="@color/main_1"
+                android:fontFamily="@font/ibm_medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_detail_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="사형 제도 부활을 건의합니다"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/ibm_medium"
+                android:textColor="@color/gray_800"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@id/tv_detail_tag"
+                app:layout_constraintTop_toBottomOf="@id/tv_detail_tag"/>
+
+            <TextView
+                android:id="@+id/tv_detail_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2024-09-14"
+                android:textSize="12sp"
+                android:textColor="@color/gray_700"
+                android:fontFamily="@font/ibm_semibold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_detail_title"
+                app:layout_constraintBottom_toBottomOf="@id/tv_detail_title"/>
+
+            <ImageView
+                android:id="@+id/iv_detail_line"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/line"
+                android:background="@drawable/background_transparent"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="@id/tv_detail_title"
+                app:layout_constraintEnd_toEndOf="@id/tv_detail_date"
+                app:layout_constraintTop_toBottomOf="@id/tv_detail_title"/>
+
+            <TextView
+                android:id="@+id/tv_detail_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="현재 우리나라는 김대중 전 대통령 때부터 사형 집행이 중지되었습니다.. 그러다 보니 사형이라고 재판에서 판결을 내려도 피해자 및 뉴스를 보는 국민들 입장에서는무늬만 사형이지 가석방 없는 무기징역하고 뭐가 다르냐라는 생각을 가질 수 밖에 없습니다.. 또한 사형이 집행되지 않다보니 요즘 흉악한 범죄를 저지르는 범죄자들이 많이 양산되고 있는 것이 현실입니다... 물론 국민이라면 인권 존중되어야 합니다. 그러나 이렇게 극악무도한 범죄를 저지른 자에 한해서는 가중처벌이 형성되야 합니다. 여기서 말하는 가중처벌이란 사형 집행일 것입니다.."
+                android:textColor="@color/gray_800"
+                android:textSize="14sp"
+                android:fontFamily="@font/ibm_medium"
+                app:layout_constraintStart_toStartOf="@id/iv_detail_line"
+                app:layout_constraintEnd_toEndOf="@id/iv_detail_line"
+                app:layout_constraintTop_toBottomOf="@id/iv_detail_line"/>
+
+            <ImageView
+                android:id="@+id/iv_detail_line1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/line"
+                android:background="@drawable/background_transparent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="@id/tv_detail_content"
+                app:layout_constraintEnd_toEndOf="@id/tv_detail_content"
+                app:layout_constraintTop_toBottomOf="@id/tv_detail_content"/>
+
+            <ImageView
+                android:id="@+id/iv_detail_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintStart_toStartOf="@id/iv_detail_line1"
+                app:layout_constraintEnd_toEndOf="@id/iv_detail_line1"
+                app:layout_constraintTop_toBottomOf="@id/iv_detail_line1"/>
+
+            <TextView
+                android:id="@+id/tv_detail_vote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/vote_petition"
+                android:layout_marginTop="12dp"
+                android:textSize="16sp"
+                android:fontFamily="@font/ibm_medium"
+                android:textColor="@color/gray_800"
+                app:layout_constraintStart_toStartOf="@id/iv_detail_img"
+                app:layout_constraintTop_toBottomOf="@id/iv_detail_img"/>
+
+            <TextView
+                android:id="@+id/tv_detail_period"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2024-09-16~2023-09-17"
+                android:textColor="@color/gray_800"
+                android:fontFamily="@font/ibm_medium"
+                android:textSize="8sp"
+                android:layout_marginStart="4dp"
+                app:layout_constraintStart_toEndOf="@id/tv_detail_vote"
+                app:layout_constraintTop_toTopOf="@id/tv_detail_vote"
+                app:layout_constraintBottom_toBottomOf="@id/tv_detail_vote"/>
+
+            <TextView
+                android:id="@+id/tv_detail_agree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/click_agree_btn"
+                android:textSize="8sp"
+                android:textColor="@color/gray_600"
+                android:fontFamily="@font/ibm_regular"
+                app:layout_constraintStart_toStartOf="@id/tv_detail_vote"
+                app:layout_constraintTop_toBottomOf="@id/tv_detail_vote"/>
+            
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_detail_agree"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/agree"
+                android:textSize="20sp"
+                android:textColor="@color/gray_000"
+                android:fontFamily="@font/ibm_semibold"
+                android:background="@drawable/able_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_detail_agree"/>
+
+            <ImageView
+                android:id="@+id/iv_detail_line2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/line"
+                android:background="@drawable/background_transparent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="@id/btn_detail_agree"
+                app:layout_constraintEnd_toEndOf="@id/btn_detail_agree"
+                app:layout_constraintTop_toBottomOf="@id/btn_detail_agree"/>
+
+            <TextView
+                android:id="@+id/tv_detail_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="조회수 123"
+                android:layout_marginTop="8dp"
+                android:textSize="12sp"
+                android:textColor="@color/gray_700"
+                android:fontFamily="@font/ibm_semibold"
+                app:layout_constraintStart_toStartOf="@id/iv_detail_line2"
+                app:layout_constraintTop_toBottomOf="@id/iv_detail_line2"/>
+
+            <TextView
+                android:id="@+id/tv_detail_report"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/report_petition"
+                android:textColor="@color/main_1"
+                android:textSize="12sp"
+                android:fontFamily="@font/ibm_semibold"
+                app:layout_constraintEnd_toEndOf="@+id/iv_detail_line2"
+                app:layout_constraintTop_toTopOf="@id/tv_detail_view"
+                app:layout_constraintBottom_toBottomOf="@id/tv_detail_view"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
