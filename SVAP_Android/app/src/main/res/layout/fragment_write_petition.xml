@@ -214,6 +214,7 @@
         android:layout_height="0dp"
         android:orientation="horizontal"
         android:layout_marginStart="12dp"
+        tools:listitem="@layout/write_img_item"
         app:layout_constraintStart_toEndOf="@id/ib_write_petition_gallery"
         app:layout_constraintTop_toTopOf="@id/ib_write_petition_gallery"
         app:layout_constraintBottom_toBottomOf="@id/ib_write_petition_gallery"/>
