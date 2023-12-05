@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.amazing.android.svap_android.R
+import com.amazing.android.svap_android.type.Types
 
 class MyPetitionAdapter(private val itemList: List<MyPetitionResponse>) :
     RecyclerView.Adapter<MyPetitionAdapter.MyPetitionViewHolder>() {
@@ -21,9 +22,13 @@ class MyPetitionAdapter(private val itemList: List<MyPetitionResponse>) :
 
     override fun onBindViewHolder(holder: MyPetitionViewHolder, position: Int) {
         holder.title.text = itemList[position].title
-        holder.date.text = itemList[position].dateTime.toString()
+        holder.date.text = itemList[position].dateTime
         holder.content.text = itemList[position].content
-        holder.tag.text = itemList[position].location
+        when (itemList[position].types) {
+            Types.SCHOOL -> holder.tag.text = "#학교_${itemList[position].location}"
+            Types.DORMITORY -> holder.tag.text = "#기숙사_${itemList[position].location}"
+        }
+
     }
 
     override fun getItemCount(): Int {
