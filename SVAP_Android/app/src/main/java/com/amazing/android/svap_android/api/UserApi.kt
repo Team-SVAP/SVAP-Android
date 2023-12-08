@@ -17,37 +17,37 @@ import retrofit2.http.POST
 
 interface UserApi {
 
-    @POST("/user/login") //로그인
+    @POST("/svap/user/login") //로그인
     fun login(
         @Body request: LoginRequest
     ): Call<LoginResponse>
 
-    @POST("/user/ck-account-id") //회원가입 아이디
+    @POST("/svap/user/ck-account-id") //회원가입 아이디
     fun ckId(
         @Body request: SignUpIdRequest
     ): Call<Void>
 
-    @POST("/user/ck-password") //회원가입 비번
+    @POST("/svap/user/ck-password") //회원가입 비번
     fun ckPassword(
         @Body request: SignUpPwRequest
     ): Call<Void>
 
-    @POST("/user/ck-username") //회원가입 이름
+    @POST("/svap/user/ck-username") //회원가입 이름
     fun ckName(
         @Body request: SignUpNameRequest
     ): Call<Void>
 
-    @POST("/user/signup") //회원가입
+    @POST("/svap/user/signup") //회원가입
     fun signup(
         @Body request: SignUpRequest
     ): Call<SignUpResponse>
 
-    @GET("/user/") //내가 쓴 청원 보기
+    @GET("/svap/user/") //내가 쓴 청원 보기
     fun showMyPetition(
         @Header("Authorization") accessToken: String
     ): Call<List<MyPetitionResponse>>
 
-    @GET("/user/my-info")
+    @GET("/svap/user/my-info")
     fun myInfo(
         @Header("Authorization") accessToken: String
     ): Call<UserInfoResponse>

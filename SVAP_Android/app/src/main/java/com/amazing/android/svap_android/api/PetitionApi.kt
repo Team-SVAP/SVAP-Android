@@ -17,32 +17,32 @@ import retrofit2.http.Path
 
 interface PetitionApi {
 
-    @POST("/petition/")
+    @POST("/svap/petition/")
     fun postWritePetition(
         @Header("Authorization") accessToken: String,
         @Body request: WritePetitionRequest,
     ): Call<Void>
 
-    @GET("/petition/popular")
+    @GET("/svap/petition/popular")
     fun popularPetition(
     ): Call<PopularPetitionResponse>
 
-    @GET("/petition/vote/{type}")
+    @GET("/svap/petition/vote/{type}")
     fun voteList(
         @Path("type") types: Types,
     ): Call<List<VoteListResponse>>
 
-    @GET("petition/vote-all")
+    @GET("/svap/petition/vote-all")
     fun voteAll(
     ): Call<List<VoteAllResponse>>
 
-    @GET("/petition/sort/{type}/{accessTypes}")
+    @GET("/svap/petition/sort/{type}/{accessTypes}")
     fun sortPetition(
         @Path("type") types: Types,
         @Path("accessTypes") accessTypes: AccessTypes,
     ): Call<List<SortPetitionResponse>>
 
-    @GET("petition/sort-all/{accessTypes}")
+    @GET("/svap/petition/sort-all/{accessTypes}")
     fun sortPetitionAll(
         @Path("accessTypes") accessTypes: AccessTypes,
     ): Call<List<SortAllResponse>>
