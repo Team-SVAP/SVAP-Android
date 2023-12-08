@@ -2,7 +2,7 @@ package com.amazing.android.svap_android.api
 
 import com.amazing.android.svap_android.feature.login.LoginRequest
 import com.amazing.android.svap_android.feature.login.LoginResponse
-import com.amazing.android.svap_android.feature.main.UserInfoResponse
+import com.amazing.android.svap_android.feature.myPage.UserInfoResponse
 import com.amazing.android.svap_android.feature.myPetition.MyPetitionResponse
 import com.amazing.android.svap_android.feature.signup.SignUpRequest
 import com.amazing.android.svap_android.feature.signup.SignUpResponse
@@ -11,6 +11,7 @@ import com.amazing.android.svap_android.feature.signup.signupName.SignUpNameRequ
 import com.amazing.android.svap_android.feature.signup.signupPw.SignUpPwRequest
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
@@ -51,4 +52,9 @@ interface UserApi {
     fun myInfo(
         @Header("Authorization") accessToken: String
     ): Call<UserInfoResponse>
+
+    @DELETE("/svap/")
+    fun deleteUser(
+        @Header("Authorization") accessToken: String
+    ): Call<Void>
 }
