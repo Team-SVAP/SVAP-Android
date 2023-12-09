@@ -1,5 +1,6 @@
 package com.amazing.android.svap_android.api
 
+import com.amazing.android.svap_android.feature.detail.DetailResponse
 import com.amazing.android.svap_android.feature.main.PopularPetitionResponse
 import com.amazing.android.svap_android.feature.showPetition.SortAllResponse
 import com.amazing.android.svap_android.feature.showPetition.SortPetitionResponse
@@ -46,4 +47,9 @@ interface PetitionApi {
     fun sortPetitionAll(
         @Path("accessTypes") accessTypes: AccessTypes,
     ): Call<List<SortAllResponse>>
+
+    @GET("/svap/petition/{petitionId}")
+    fun detailShow(
+        @Path("petitionId") id: Long,
+    ): Call<DetailResponse>
 }
