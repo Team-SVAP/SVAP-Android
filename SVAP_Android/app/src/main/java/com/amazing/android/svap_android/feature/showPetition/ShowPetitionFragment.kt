@@ -1,32 +1,44 @@
 package com.amazing.android.svap_android.feature.showPetition
 
+import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.amazing.android.svap_android.R
 import com.amazing.android.svap_android.api.ApiProvider
 import com.amazing.android.svap_android.api.PetitionApi
 import com.amazing.android.svap_android.databinding.FragmentShowPetitionBinding
+import com.amazing.android.svap_android.feature.myPetition.MyPetitionAdapter
+import com.amazing.android.svap_android.feature.myPetition.MyPetitionResponse
 import com.amazing.android.svap_android.type.AccessTypes
+import com.amazing.android.svap_android.type.Types
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 
 
-class ShowPetitionFragment : Fragment() {
+class ShowPetitionFragment : Fragment(){
 
     private lateinit var binding: FragmentShowPetitionBinding
     private val retrofit: Retrofit = ApiProvider.getInstance()
     private val petitionApi: PetitionApi = retrofit.create(PetitionApi::class.java)
-
-    private val listOfType = ArrayList<AccessTypesModel>()
-    private lateinit var typeAdapter: ShowSpinnerAdapter
+    private var types:Types = Types.ALL
+    private var accessTypes:AccessTypes = AccessTypes.NORMAL
+    private lateinit var mcontext: Context
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,54 +52,36 @@ class ShowPetitionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initData()
-        initSpinnerHandler()
-        initSpinner()
+        //initSpinnerHandler()
+        //initSpinner()
         selectType()
+        initBottomSheet()
+        openBottomSheet()
+        binding.rvShow.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     }
 
-    private fun initSpinner() {
-        val recent = AccessTypesModel("최신순으로 보기", "recent")
-        listOfType.add(recent)
-
-        val vote = AccessTypesModel("투표순으로 보기", "vote")
-        listOfType.add(vote)
-
-        val approval = AccessTypesModel("승인된 청원 보기", "approval")
-        listOfType.add(approval)
-
-        val waiting = AccessTypesModel("검토중인 청원 보기", "waiting")
-        listOfType.add(waiting)
-
-        typeAdapter = ShowSpinnerAdapter(requireContext(), R.layout.petition_type_item, listOfType)
-        binding.spinnerShowPetition.adapter = typeAdapter
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mcontext = context
     }
 
-    private fun initSpinnerHandler() {
-        binding.spinnerShowPetition.onItemSelectedListener =
-            object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    //
-                    val show =
-                        binding.spinnerShowPetition.getItemAtPosition(position) as AccessTypesModel
-                    when (show.type) {
-                        //"recent" -> //
-                        //"vote" -> //
-                        //"approval" -> //
-                        //"waiting" -> //
-
-                    }
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                    //
-                }
-            }
+    private fun openBottomSheet() {
+        binding.tvShowPetitionSort.setOnClickListener {
+            ShowBottomDialogFragment().show(parentFragmentManager,"ShowBottomDialogFragment")
+        }
     }
+
+    fun changeSortTag(accessTypes: AccessTypes) {
+        this.accessTypes = accessTypes
+        initData()
+    }
+
+    private fun initBottomSheet() {
+        val recyclerView = view?.findViewById<RecyclerView>(R.id.rv_bottom_sheet_show)
+        recyclerView?.layoutManager = LinearLayoutManager(context)
+    }
+
 
     private fun selectType() {
         binding.apply {
@@ -97,6 +91,8 @@ class ShowPetitionFragment : Fragment() {
                     tvShowPetitionSchool,
                     tvShowPetitionDormitory
                 )
+                types = Types.ALL
+                initData()
             }
             tvShowPetitionDormitory.setOnClickListener {
                 changeType(
@@ -104,6 +100,8 @@ class ShowPetitionFragment : Fragment() {
                     tvShowPetitionSchool,
                     tvShowPetitionAll
                 )
+                types = Types.DORMITORY
+                initData()
             }
             tvShowPetitionSchool.setOnClickListener {
                 changeType(
@@ -111,6 +109,8 @@ class ShowPetitionFragment : Fragment() {
                     tvShowPetitionAll,
                     tvShowPetitionDormitory
                 )
+                types = Types.SCHOOL
+                initData()
             }
         }
     }
@@ -122,19 +122,29 @@ class ShowPetitionFragment : Fragment() {
     }
 
     private fun initData() {
-        petitionApi.sortPetitionAll(accessTypes = AccessTypes.NORMAL).enqueue(object :
-            Callback<List<SortAllResponse>> {
+        petitionApi.sortPetition(types = types,accessTypes = accessTypes).enqueue(object :
+            Callback<List<SortPetitionResponse>> {
             override fun onResponse(
-                call: Call<List<SortAllResponse>>,
-                response: Response<List<SortAllResponse>>
+                call: Call<List<SortPetitionResponse>>,
+                response: Response<List<SortPetitionResponse>>
             ) {
                 //
+                when(response.code()) {
+                    200-> response.body()?.let { setAdapter(it) }
+                }
                 Log.d("TEST", "s" + response.body())
             }
 
-            override fun onFailure(call: Call<List<SortAllResponse>>, t: Throwable) {
+            override fun onFailure(call: Call<List<SortPetitionResponse>>, t: Throwable) {
                 //
             }
         })
+    }
+
+    private fun setAdapter(dataList: List<SortPetitionResponse>) {
+        val adapter = ShowPetitionAdapter(dataList,mcontext)
+
+        binding.rvShow.adapter = adapter
+        adapter.notifyDataSetChanged()
     }
 }
