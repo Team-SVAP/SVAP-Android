@@ -28,25 +28,11 @@ interface PetitionApi {
     fun popularPetition(
     ): Call<PopularPetitionResponse>
 
-    @GET("/svap/petition/vote/{type}")
-    fun voteList(
-        @Path("type") types: Types,
-    ): Call<List<VoteListResponse>>
-
-    @GET("/svap/petition/vote-all")
-    fun voteAll(
-    ): Call<List<VoteAllResponse>>
-
     @GET("/svap/petition/sort/{type}/{accessTypes}")
     fun sortPetition(
         @Path("type") types: Types,
         @Path("accessTypes") accessTypes: AccessTypes,
     ): Call<List<SortPetitionResponse>>
-
-    @GET("/svap/petition/sort-all/{accessTypes}")
-    fun sortPetitionAll(
-        @Path("accessTypes") accessTypes: AccessTypes,
-    ): Call<List<SortAllResponse>>
 
     @GET("/svap/petition/{petitionId}")
     fun detailShow(
