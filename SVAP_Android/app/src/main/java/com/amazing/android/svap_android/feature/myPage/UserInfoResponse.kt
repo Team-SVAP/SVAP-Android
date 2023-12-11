@@ -1,4 +1,4 @@
-package com.amazing.android.svap_android.feature.main
+package com.amazing.android.svap_android.feature.myPage
 
 import com.amazing.android.svap_android.type.Role
 
