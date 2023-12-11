@@ -59,6 +59,9 @@ class ShowPetitionFragment : Fragment(){
         openBottomSheet()
         binding.rvShow.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        binding.floatBtnShowPetition.setOnClickListener {
+            binding.rvShow.smoothScrollToPosition(0)
+        }
     }
 
     override fun onAttach(context: Context) {

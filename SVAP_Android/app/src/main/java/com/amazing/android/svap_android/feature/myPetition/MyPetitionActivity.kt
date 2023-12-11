@@ -35,10 +35,13 @@ class MyPetitionActivity : AppCompatActivity() {
         initToken()
         binding.rvMyPetition.layoutManager =
             LinearLayoutManager(baseContext, LinearLayoutManager.VERTICAL, false)
+        binding.floatBtnMyPetition.setOnClickListener {
+            binding.rvMyPetition.smoothScrollToPosition(0)
+        }
     }
 
     private fun setAdapter(dataList: List<MyPetitionResponse>) {
-        val adapter = MyPetitionAdapter(dataList)
+        val adapter = MyPetitionAdapter(dataList,baseContext)
 
         binding.rvMyPetition.adapter = adapter
         adapter.notifyDataSetChanged()
@@ -77,5 +80,4 @@ class MyPetitionActivity : AppCompatActivity() {
     private fun initToolbar() {
         binding.ibMyPetitionBack.setOnClickListener { finish() }
     }
-
 }
