@@ -23,6 +23,6 @@ class HomePagerAdapter(private val images: List<Int>) : RecyclerView.Adapter<Hom
     }
 
     override fun getItemCount(): Int {
-        return Int.MAX_VALUE
+        return images.size
     }
 }
