@@ -2,10 +2,8 @@ package com.amazing.android.svap_android.api
 
 import com.amazing.android.svap_android.feature.detail.DetailResponse
 import com.amazing.android.svap_android.feature.main.PopularPetitionResponse
-import com.amazing.android.svap_android.feature.showPetition.SortAllResponse
+import com.amazing.android.svap_android.feature.showPetition.SearchRequest
 import com.amazing.android.svap_android.feature.showPetition.SortPetitionResponse
-import com.amazing.android.svap_android.feature.showPetition.VoteAllResponse
-import com.amazing.android.svap_android.feature.showPetition.VoteListResponse
 import com.amazing.android.svap_android.feature.write.WritePetitionRequest
 import com.amazing.android.svap_android.type.AccessTypes
 import com.amazing.android.svap_android.type.Types
@@ -38,4 +36,9 @@ interface PetitionApi {
     fun detailShow(
         @Path("petitionId") id: Long,
     ): Call<DetailResponse>
+
+    @POST("/svap/petition/search")
+    fun search(
+        @Body request: SearchRequest,
+    ): Call<List<SortPetitionResponse>>
 }
