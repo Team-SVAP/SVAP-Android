@@ -1,7 +1,7 @@
 package com.amazing.android.svap_android.api
 
 import com.amazing.android.svap_android.feature.detail.DetailResponse
-import com.amazing.android.svap_android.feature.main.PopularPetitionResponse
+import com.amazing.android.svap_android.feature.home.PopularPetitionResponse
 import com.amazing.android.svap_android.feature.showPetition.SearchRequest
 import com.amazing.android.svap_android.feature.showPetition.SortPetitionResponse
 import com.amazing.android.svap_android.feature.write.WritePetitionRequest
