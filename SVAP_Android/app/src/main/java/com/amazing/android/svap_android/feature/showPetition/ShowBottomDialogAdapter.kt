@@ -1,6 +1,5 @@
 package com.amazing.android.svap_android.feature.showPetition
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +7,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.amazing.android.svap_android.R
-import com.amazing.android.svap_android.feature.main.MainActivity
 
-class ShowBottomDialogAdapter(private val itemList: MutableList<AccessTypesModel>) : RecyclerView.Adapter<ShowBottomDialogAdapter.Holder>() {
+class ShowBottomDialogAdapter(private val itemClickListener: (AccessTypesModel) -> Unit) :
+    RecyclerView.Adapter<ShowBottomDialogAdapter.Holder>() {
+
+    private var itemList: List<AccessTypesModel> = listOf()
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -20,32 +21,26 @@ class ShowBottomDialogAdapter(private val itemList: MutableList<AccessTypesModel
         return Holder(view)
     }
 
+    fun submitList(newItems: List<AccessTypesModel>) {
+        itemList = newItems
+        notifyDataSetChanged()
+    }
+
     override fun getItemCount(): Int {
-        Log.d("TEST", "xx" + itemList)
         return itemList.size
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val item = itemList[position]
         holder.textView.text = item.name
-        holder.checkVIew.visibility = if(item.isClicked) View.VISIBLE else View.INVISIBLE
-        //holder.bind(item)
+        holder.checkVIew.visibility = if (item.isClicked) View.VISIBLE else View.INVISIBLE
         holder.itemView.setOnClickListener {
-            //listener.onItemClick(item)
-            itemList.forEach {it.isClicked = false}
+            //itemList.forEach { it.isClicked = false }
+            val previousItem = itemList.find { it.isClicked}
+            previousItem?.isClicked = false
             item.isClicked = true
+            itemClickListener.invoke(item)
             notifyDataSetChanged()
-            //val sortTag =
-            ShowPetitionFragment().changeSortTag(item.accessTypes)
-        }
-    }
-
-    fun setItem(items: MutableList<AccessTypesModel>) {
-        if (items.isNotEmpty()) {
-            Log.d("TEST","a"+items.size)
-            //itemList = items
-            notifyDataSetChanged()
-            Log.d("TEST","c"+itemList.size)
         }
     }
 

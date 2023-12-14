@@ -1,43 +1,36 @@
 package com.amazing.android.svap_android.feature.showPetition
 
-import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.LinearLayout
+import android.widget.SearchView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.amazing.android.svap_android.R
 import com.amazing.android.svap_android.api.ApiProvider
 import com.amazing.android.svap_android.api.PetitionApi
 import com.amazing.android.svap_android.databinding.FragmentShowPetitionBinding
-import com.amazing.android.svap_android.feature.myPetition.MyPetitionAdapter
-import com.amazing.android.svap_android.feature.myPetition.MyPetitionResponse
 import com.amazing.android.svap_android.type.AccessTypes
 import com.amazing.android.svap_android.type.Types
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 
 
-class ShowPetitionFragment : Fragment(){
+class ShowPetitionFragment : Fragment(), OnItemClickListener {
 
     private lateinit var binding: FragmentShowPetitionBinding
     private val retrofit: Retrofit = ApiProvider.getInstance()
     private val petitionApi: PetitionApi = retrofit.create(PetitionApi::class.java)
-    private var types:Types = Types.ALL
-    private var accessTypes:AccessTypes = AccessTypes.NORMAL
+    private var types: Types = Types.ALL
+    private var accessTypes: AccessTypes = AccessTypes.NORMAL
     private lateinit var mcontext: Context
 
     override fun onCreateView(
@@ -51,17 +44,74 @@ class ShowPetitionFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initData()
+        //initData()
         //initSpinnerHandler()
         //initSpinner()
         selectType()
         initBottomSheet()
         openBottomSheet()
+        initSearchView()
+        setHomeSearch()
         binding.rvShow.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.floatBtnShowPetition.setOnClickListener {
             binding.rvShow.smoothScrollToPosition(0)
         }
+    }
+
+    private fun setHomeSearch() {
+        val searchText = arguments?.getString("search",null)
+        if(searchText!= null) {
+            search(searchText)
+        }else {
+            initData()
+        }
+    }
+
+    private fun initSearchView() {
+        binding.searchShowPetitionSearch.setOnQueryTextListener(object :
+            SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query != null) {
+                    search(query)
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+
+        })
+    }
+
+    private fun search(title: String) {
+        petitionApi.search(
+            SearchRequest(
+                title = title
+            )
+        ).enqueue(object : Callback<List<SortPetitionResponse>> {
+            override fun onResponse(
+                call: Call<List<SortPetitionResponse>>,
+                response: Response<List<SortPetitionResponse>>
+            ) {
+                when (response.code()) {
+                    200 -> {
+                        if(response.body()?.isEmpty() == true) {
+                            binding.tvShowPetitionSearchResult.text = "'${title}'에 대한 검색결과가 없습니다."
+                        }else {
+                            binding.tvShowPetitionSearchResult.text = ""
+                            response.body()?.let { setAdapter(it) }
+                        }
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<List<SortPetitionResponse>>, t: Throwable) {
+                Toast.makeText(context,R.string.fail_sever,Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     override fun onAttach(context: Context) {
@@ -71,13 +121,9 @@ class ShowPetitionFragment : Fragment(){
 
     private fun openBottomSheet() {
         binding.tvShowPetitionSort.setOnClickListener {
-            ShowBottomDialogFragment().show(parentFragmentManager,"ShowBottomDialogFragment")
+            val bottomSheet = ShowBottomDialogFragment(this)
+            bottomSheet.show(childFragmentManager, bottomSheet.tag)
         }
-    }
-
-    fun changeSortTag(accessTypes: AccessTypes) {
-        this.accessTypes = accessTypes
-        initData()
     }
 
     private fun initBottomSheet() {
@@ -125,29 +171,33 @@ class ShowPetitionFragment : Fragment(){
     }
 
     private fun initData() {
-        petitionApi.sortPetition(types = types,accessTypes = accessTypes).enqueue(object :
+        petitionApi.sortPetition(types = types, accessTypes = accessTypes).enqueue(object :
             Callback<List<SortPetitionResponse>> {
             override fun onResponse(
                 call: Call<List<SortPetitionResponse>>,
                 response: Response<List<SortPetitionResponse>>
             ) {
-                //
-                when(response.code()) {
-                    200-> response.body()?.let { setAdapter(it) }
+                when (response.code()) {
+                    200 -> response.body()?.let { setAdapter(it) }
                 }
-                Log.d("TEST", "s" + response.body())
             }
 
             override fun onFailure(call: Call<List<SortPetitionResponse>>, t: Throwable) {
-                //
+                Toast.makeText(context,R.string.fail_sever,Toast.LENGTH_SHORT).show()
             }
         })
     }
 
     private fun setAdapter(dataList: List<SortPetitionResponse>) {
-        val adapter = ShowPetitionAdapter(dataList,mcontext)
+        val adapter = ShowPetitionAdapter(dataList, mcontext)
 
         binding.rvShow.adapter = adapter
         adapter.notifyDataSetChanged()
+    }
+
+    override fun onItemClick(item: AccessTypesModel) {
+        binding.tvShowPetitionSort.text = item.name
+        accessTypes = item.accessTypes
+        initData()
     }
 }
