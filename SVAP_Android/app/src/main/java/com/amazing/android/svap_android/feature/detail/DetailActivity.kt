@@ -59,8 +59,8 @@ class DetailActivity : AppCompatActivity() {
         if (accessToken != null && id != null) {
             reportApi.report(id = id).enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                    when(response.code()) {
-                        200-> {
+                    when (response.code()) {
+                        200 -> {
                             Toast.makeText(baseContext, "청원이 신고되었습니다", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -117,7 +117,5 @@ class DetailActivity : AppCompatActivity() {
             }
         }
         data.imgUrl?.let { initViewPager(it) }
-        //initViewPager(data.imgUrl)
-        Log.d("TEST", "ssss")
     }
 }

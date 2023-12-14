@@ -2,7 +2,6 @@ package com.amazing.android.svap_android.feature.showPetition
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,9 +43,6 @@ class ShowPetitionFragment : Fragment(), OnItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //initData()
-        //initSpinnerHandler()
-        //initSpinner()
         selectType()
         initBottomSheet()
         openBottomSheet()
@@ -60,10 +56,10 @@ class ShowPetitionFragment : Fragment(), OnItemClickListener {
     }
 
     private fun setHomeSearch() {
-        val searchText = arguments?.getString("search",null)
-        if(searchText!= null) {
+        val searchText = arguments?.getString("search", null)
+        if (searchText != null) {
             search(searchText)
-        }else {
+        } else {
             initData()
         }
     }
@@ -98,9 +94,9 @@ class ShowPetitionFragment : Fragment(), OnItemClickListener {
             ) {
                 when (response.code()) {
                     200 -> {
-                        if(response.body()?.isEmpty() == true) {
+                        if (response.body()?.isEmpty() == true) {
                             binding.tvShowPetitionSearchResult.text = "'${title}'에 대한 검색결과가 없습니다."
-                        }else {
+                        } else {
                             binding.tvShowPetitionSearchResult.text = ""
                             response.body()?.let { setAdapter(it) }
                         }
@@ -109,7 +105,7 @@ class ShowPetitionFragment : Fragment(), OnItemClickListener {
             }
 
             override fun onFailure(call: Call<List<SortPetitionResponse>>, t: Throwable) {
-                Toast.makeText(context,R.string.fail_sever,Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.fail_sever, Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -183,7 +179,7 @@ class ShowPetitionFragment : Fragment(), OnItemClickListener {
             }
 
             override fun onFailure(call: Call<List<SortPetitionResponse>>, t: Throwable) {
-                Toast.makeText(context,R.string.fail_sever,Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.fail_sever, Toast.LENGTH_SHORT).show()
             }
         })
     }

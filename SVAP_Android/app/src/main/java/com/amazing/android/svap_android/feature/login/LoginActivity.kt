@@ -71,7 +71,7 @@ class LoginActivity : AppCompatActivity() {
             btnLogin.setOnClickListener {
                 val id = etLoginId.text.toString()
                 val pw = etLoginPw.text.toString()
-                login(id, pw);
+                login(id, pw)
             }
         }
     }
@@ -96,7 +96,7 @@ class LoginActivity : AppCompatActivity() {
         ).enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 when (response.code()) {
-                    201 -> {
+                    200 -> {
                         val sharedPreference = getSharedPreferences("token", 0)
                         val edit = sharedPreference.edit()
                         edit.putString("accessToken", response.body()?.accessToken)

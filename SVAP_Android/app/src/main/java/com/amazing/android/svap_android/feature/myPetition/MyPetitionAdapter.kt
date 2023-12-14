@@ -11,7 +11,10 @@ import com.amazing.android.svap_android.R
 import com.amazing.android.svap_android.feature.detail.DetailActivity
 import com.amazing.android.svap_android.type.Types
 
-class MyPetitionAdapter(private val itemList: List<MyPetitionResponse>,private val context: Context) :
+class MyPetitionAdapter(
+    private val itemList: List<MyPetitionResponse>,
+    private val context: Context
+) :
     RecyclerView.Adapter<MyPetitionAdapter.MyPetitionViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -32,8 +35,8 @@ class MyPetitionAdapter(private val itemList: List<MyPetitionResponse>,private v
             else -> holder.tag.text = "#기숙사_${itemList[position].location}"
         }
         holder.itemView.setOnClickListener {
-            val intent = Intent(context,DetailActivity::class.java)
-            intent.putExtra("Id",itemList[position].id)
+            val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra("Id", itemList[position].id)
             context.startActivity(intent)
         }
     }

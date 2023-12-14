@@ -70,10 +70,6 @@ class SignUpIdFragment : Fragment() {
         }
     }
 
-    // 1. Callback
-    // 2. Response
-    // 3. data class
-
     private fun sever(accountId: String) {
         api.ckId(
             SignUpIdRequest(
@@ -84,17 +80,19 @@ class SignUpIdFragment : Fragment() {
                 when (response.code()) {
                     200 -> {
                         val bundle = Bundle()
-                        bundle.putString("accountId",accountId)
+                        bundle.putString("accountId", accountId)
 
                         val fragmentTransaction: FragmentTransaction? =
                             activity?.supportFragmentManager?.beginTransaction()
                         fragmentTransaction?.replace(R.id.fl_signup, SignUpPwFragment());
                         fragmentTransaction?.commit()
                     }
+
                     409 -> {
                         binding.tvSignupIdCheck.text =
                             resources.getString(R.string.use_another_user)
                     }
+
                     400, 500 -> {
                         binding.tvSignupIdCheck.text = resources.getString(R.string.check_id)
                     }

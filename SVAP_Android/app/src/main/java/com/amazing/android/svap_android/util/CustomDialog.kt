@@ -14,7 +14,7 @@ class CustomDialog(
     context: Context,
     titleText: String,
     content: String,
-    btnText:String,
+    btnText: String,
     private val listener: DialogClickListener
 ) : DialogFragment() {
     private val dialog = AlertDialog.Builder(context).create()
@@ -31,8 +31,6 @@ class CustomDialog(
         msg.text = content
         btnOk.text = btnText
         btnOk.setOnClickListener {
-            // 클릭 시 수행할 동작 작성
-            //dialog.dismiss()
             listener.onYesBtnClick()
         }
         btnCancel.setOnClickListener { dialog.dismiss() }

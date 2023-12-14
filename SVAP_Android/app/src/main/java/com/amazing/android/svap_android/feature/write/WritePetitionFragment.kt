@@ -152,7 +152,7 @@ class WritePetitionFragment : Fragment() {
             ).enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     when (response.code()) {
-                        201 -> {
+                        200 -> {
                             Toast.makeText(context, "청원이 작성되었습니다.", Toast.LENGTH_SHORT).show()
                         }
 
@@ -178,7 +178,6 @@ class WritePetitionFragment : Fragment() {
                     position: Int,
                     id: Long
                 ) {
-                    //클릭
                     val type =
                         binding.spinnerWritePetition.getItemAtPosition(position) as PetitionTypeModel
                     if (type.name != "종류 선택") {
@@ -203,7 +202,6 @@ class WritePetitionFragment : Fragment() {
                             )
                         )
                         typeState = false
-                        Log.d("TEST", "c" + type.name)
                     }
                 }
 
@@ -239,7 +237,6 @@ class WritePetitionFragment : Fragment() {
             openGallery() // 권한이 이미 허용된 경우
         } else {
             requestPermissions(REQUIRED_PERMISSIONS, PERMISSIONS_REQUEST_CODE) // 권한 요청
-            Log.d("TEST", "권한 요청")
         }
     }
 
@@ -281,15 +278,12 @@ class WritePetitionFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
             val uri = data.data
-            // imgUriList = uri.toString()
             imgUriList.add(uri.toString())
             checkInput()
             val recyclerView = binding.rvWritePetition
-            recyclerView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+            recyclerView.layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             recyclerView.adapter = WriteImageAdapter(imgUriList)
-            Log.d("TEST", "im" + uri)
-            //val imageView = findViewById<ImageView>(R.id.imageView)
-            //imageView.setImageURI(uri)
         }
     }
 }

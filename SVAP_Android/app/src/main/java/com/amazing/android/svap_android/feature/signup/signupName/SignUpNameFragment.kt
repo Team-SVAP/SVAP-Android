@@ -9,12 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.amazing.android.svap_android.feature.main.MainActivity
 import com.amazing.android.svap_android.R
 import com.amazing.android.svap_android.api.ApiProvider
 import com.amazing.android.svap_android.api.UserApi
 import com.amazing.android.svap_android.databinding.FragmentSignUpNameBinding
 import com.amazing.android.svap_android.feature.login.LoginActivity
+import com.amazing.android.svap_android.feature.main.MainActivity
 import com.amazing.android.svap_android.feature.signup.SignUpRequest
 import com.amazing.android.svap_android.feature.signup.SignUpResponse
 import retrofit2.Call

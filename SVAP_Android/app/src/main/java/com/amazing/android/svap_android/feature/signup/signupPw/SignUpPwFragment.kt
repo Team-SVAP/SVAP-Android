@@ -35,7 +35,7 @@ class SignUpPwFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentSignUpPwBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -118,14 +118,15 @@ class SignUpPwFragment : Fragment() {
                         val accountId = arguments?.getString("accountId")
 
                         val bundle = Bundle()
-                        bundle.putString("accountId",accountId)
-                        bundle.putString("password",pw)
+                        bundle.putString("accountId", accountId)
+                        bundle.putString("password", pw)
 
                         val fragmentTransaction: FragmentTransaction? =
                             activity?.supportFragmentManager?.beginTransaction()
                         fragmentTransaction?.replace(R.id.fl_signup, SignUpNameFragment());
                         fragmentTransaction?.commit()
                     }
+
                     400, 500 -> {
                         binding.tvSignupPwCheck.text = resources.getString(R.string.check_password)
                     }

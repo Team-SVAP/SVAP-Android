@@ -21,7 +21,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import kotlin.properties.Delegates
 
 
 class HomeFragment : Fragment() {
@@ -31,7 +30,7 @@ class HomeFragment : Fragment() {
     private val petitionApi: PetitionApi = retrofit.create(PetitionApi::class.java)
 
     private lateinit var viewPager2: ViewPager2
-    private var id:Long = 0
+    private var id: Long = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,8 +50,8 @@ class HomeFragment : Fragment() {
 
     private fun moveDetailPage() {
         binding.tvHomeMore.setOnClickListener {
-            val intent = Intent(context,DetailActivity::class.java)
-            intent.putExtra("Id",id)
+            val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra("Id", id)
             startActivity(intent)
         }
     }
@@ -61,14 +60,11 @@ class HomeFragment : Fragment() {
         binding.svHomeSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                //검색 버튼 누를때
                 if (query != null) performSearch(query)
-                //performSearch(query)
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                //검색창에서 글자 변경될때
                 return true
             }
         })
@@ -76,7 +72,7 @@ class HomeFragment : Fragment() {
 
     private fun performSearch(text: String) {
         val bundle = Bundle()
-        bundle.putString("search",text)
+        bundle.putString("search", text)
 
         val showPetitionFragment = ShowPetitionFragment()
         showPetitionFragment.arguments = bundle
@@ -110,7 +106,7 @@ class HomeFragment : Fragment() {
                 call: Call<PopularPetitionResponse>,
                 response: Response<PopularPetitionResponse>
             ) {
-                when(response.code()) {
+                when (response.code()) {
                     200 -> {
                         binding.tvHomeTitle.text = response.body()?.title
                         binding.tvHomeContent.text = response.body()?.content

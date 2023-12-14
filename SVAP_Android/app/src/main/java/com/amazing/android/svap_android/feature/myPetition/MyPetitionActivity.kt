@@ -1,14 +1,8 @@
 package com.amazing.android.svap_android.feature.myPetition
 
-import android.app.Activity
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.amazing.android.svap_android.R
@@ -41,7 +35,7 @@ class MyPetitionActivity : AppCompatActivity() {
     }
 
     private fun setAdapter(dataList: List<MyPetitionResponse>) {
-        val adapter = MyPetitionAdapter(dataList,baseContext)
+        val adapter = MyPetitionAdapter(dataList, baseContext)
 
         binding.rvMyPetition.adapter = adapter
         adapter.notifyDataSetChanged()
@@ -51,9 +45,6 @@ class MyPetitionActivity : AppCompatActivity() {
         val accessToken = getSharedPreferences("token", 0).getString("accessToken", null)
         if (accessToken != null) {
             initData(accessToken)
-        } else {
-            //토큰 없음
-            Log.d("TEST", "토큰 전달 안됨")
         }
     }
 

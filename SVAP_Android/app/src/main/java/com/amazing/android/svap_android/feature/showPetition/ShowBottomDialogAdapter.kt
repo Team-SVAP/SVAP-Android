@@ -35,8 +35,7 @@ class ShowBottomDialogAdapter(private val itemClickListener: (AccessTypesModel) 
         holder.textView.text = item.name
         holder.checkVIew.visibility = if (item.isClicked) View.VISIBLE else View.INVISIBLE
         holder.itemView.setOnClickListener {
-            //itemList.forEach { it.isClicked = false }
-            val previousItem = itemList.find { it.isClicked}
+            val previousItem = itemList.find { it.isClicked }
             previousItem?.isClicked = false
             item.isClicked = true
             itemClickListener.invoke(item)

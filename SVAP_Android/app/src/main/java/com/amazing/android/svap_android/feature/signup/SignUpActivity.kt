@@ -17,7 +17,7 @@ class SignUpActivity : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initFragmentManager();
+        initFragmentManager()
     }
 
     private fun initFragmentManager() {
@@ -26,5 +26,3 @@ class SignUpActivity : AppCompatActivity() {
         fragmentTransaction.commit()
     }
 }
-
-

@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.amazing.android.svap_android.R
 import com.bumptech.glide.Glide
 
-class WriteImageAdapter(private val itemList:List<String>) : RecyclerView.Adapter<WriteImageAdapter.ItemViewHolder>(){
+class WriteImageAdapter(private val itemList: List<String>) :
+    RecyclerView.Adapter<WriteImageAdapter.ItemViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -31,5 +32,4 @@ class WriteImageAdapter(private val itemList:List<String>) : RecyclerView.Adapte
     class ItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val imageView: ImageView = view.findViewById(R.id.iv_write_img)
     }
-
 }

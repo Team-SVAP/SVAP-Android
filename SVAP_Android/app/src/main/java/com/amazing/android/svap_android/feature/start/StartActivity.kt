@@ -1,8 +1,8 @@
 package com.amazing.android.svap_android.feature.start
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.amazing.android.svap_android.databinding.ActivityStartBinding
 import com.amazing.android.svap_android.feature.login.LoginActivity
 
@@ -19,7 +19,7 @@ class StartActivity : AppCompatActivity() {
 
     private fun movePage() {
         binding.btnStart.setOnClickListener {
-            val intent = Intent(baseContext,LoginActivity::class.java)
+            val intent = Intent(baseContext, LoginActivity::class.java)
             startActivity(intent)
         }
     }
