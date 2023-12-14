@@ -1,5 +1,5 @@
 package com.amazing.android.svap_android.feature.showPetition
 
-data class SearchResponse(
+data class SearchRequest(
     val title: String,
 )
