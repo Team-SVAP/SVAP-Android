@@ -1,7 +1,7 @@
-package com.amazing.android.svap_android.feature.main
+package com.amazing.android.svap_android.feature.home
 
 data class PopularPetitionResponse(
-    val id: Int,
+    val id: Long,
     val title: String,
     val content: String,
     val dateTime: String,
