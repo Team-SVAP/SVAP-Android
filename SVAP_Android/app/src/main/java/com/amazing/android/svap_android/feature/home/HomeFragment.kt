@@ -15,12 +15,13 @@ import com.amazing.android.svap_android.R
 import com.amazing.android.svap_android.api.ApiProvider
 import com.amazing.android.svap_android.api.PetitionApi
 import com.amazing.android.svap_android.databinding.FragmentHomeBinding
-import com.amazing.android.svap_android.feature.main.PopularPetitionResponse
-import com.amazing.android.svap_android.feature.showPetition.ShowPetitionActivity
+import com.amazing.android.svap_android.feature.detail.DetailActivity
+import com.amazing.android.svap_android.feature.showPetition.ShowPetitionFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import kotlin.properties.Delegates
 
 
 class HomeFragment : Fragment() {
@@ -30,6 +31,7 @@ class HomeFragment : Fragment() {
     private val petitionApi: PetitionApi = retrofit.create(PetitionApi::class.java)
 
     private lateinit var viewPager2: ViewPager2
+    private var id:Long = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +46,15 @@ class HomeFragment : Fragment() {
         initSearch()
         initViewPager()
         initPopularPetition()
+        moveDetailPage()
+    }
+
+    private fun moveDetailPage() {
+        binding.tvHomeMore.setOnClickListener {
+            val intent = Intent(context,DetailActivity::class.java)
+            intent.putExtra("Id",id)
+            startActivity(intent)
+        }
     }
 
     private fun initSearch() {
@@ -64,9 +75,15 @@ class HomeFragment : Fragment() {
     }
 
     private fun performSearch(text: String) {
-        val intent = Intent(context, ShowPetitionActivity::class.java)
-        intent.putExtra("search", text)
-        startActivity(intent)
+        val bundle = Bundle()
+        bundle.putString("search",text)
+
+        val showPetitionFragment = ShowPetitionFragment()
+        showPetitionFragment.arguments = bundle
+
+        val transaction = activity?.supportFragmentManager?.beginTransaction()
+        transaction?.replace(R.id.frame_main, showPetitionFragment)
+        transaction?.commit()
     }
 
     private fun initViewPager() {
@@ -93,8 +110,13 @@ class HomeFragment : Fragment() {
                 call: Call<PopularPetitionResponse>,
                 response: Response<PopularPetitionResponse>
             ) {
-                binding.tvHomeTitle.text = response.body()?.title
-                binding.tvHomeContent.text = response.body()?.content
+                when(response.code()) {
+                    200 -> {
+                        binding.tvHomeTitle.text = response.body()?.title
+                        binding.tvHomeContent.text = response.body()?.content
+                        id = response.body()!!.id
+                    }
+                }
             }
 
             override fun onFailure(call: Call<PopularPetitionResponse>, t: Throwable) {
