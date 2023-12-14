@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SVAP_Android</string>
+    <string name="app_name">SVAP</string>
     <string name="check_id_pw">아이디 또는 비밀번호를 다시 확인하세요.</string>
     <string name="passWord">비밀번호</string>
     <string name="id">아이디</string>
