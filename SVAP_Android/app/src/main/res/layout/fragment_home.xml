@@ -34,6 +34,7 @@
         android:textSize="12sp"
         android:background="@drawable/search_round"
         android:layoutDirection="rtl"
+        app:queryBackground="@null"
         app:iconifiedByDefault="false"
         app:queryHint="@string/search_petition"
         app:searchIcon="@drawable/tabler_search"
@@ -95,6 +96,7 @@
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
+            android:id="@+id/tv_home_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/see_more"

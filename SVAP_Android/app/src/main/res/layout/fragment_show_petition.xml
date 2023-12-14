@@ -24,21 +24,22 @@
             android:layout_gravity="center"/>
     </androidx.appcompat.widget.Toolbar>
 
-    <EditText
-        android:id="@+id/et_show_petition_search"
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_show_petition_search"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="18dp"
         android:background="@drawable/focus_edit_text"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:hint="@string/search_petition"
-        android:paddingStart="20dp"
         android:textSize="12sp"
         android:textColor="@color/gray_800"
         android:fontFamily="@font/ibm_medium"
-        android:drawableRight="@drawable/tabler_search"
-        android:paddingRight="20dp"
+        android:layoutDirection="rtl"
+        app:queryBackground="@null"
+        app:iconifiedByDefault="false"
+        app:queryHint="@string/search_petition"
+        app:searchIcon="@drawable/tabler_search"
         app:layout_constraintTop_toBottomOf="@id/tb_show_petition"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -49,8 +50,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="@id/et_show_petition_search"
-        app:layout_constraintTop_toBottomOf="@id/et_show_petition_search">
+        app:layout_constraintStart_toStartOf="@id/search_show_petition_search"
+        app:layout_constraintTop_toBottomOf="@id/search_show_petition_search">
 
         <TextView
             android:id="@+id/tv_show_petition_all"
@@ -91,7 +92,7 @@
         android:textSize="10sp"
         android:fontFamily="@font/ibm_regular"
         android:drawablePadding="2dp"
-        app:layout_constraintEnd_toEndOf="@id/et_show_petition_search"
+        app:layout_constraintEnd_toEndOf="@id/search_show_petition_search"
         app:layout_constraintTop_toTopOf="@id/linear_show_petition"
         app:layout_constraintBottom_toBottomOf="@id/linear_show_petition"
         app:drawableStartCompat="@drawable/switch_icon" />
@@ -106,6 +107,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/tv_show_petition_sort"
         app:layout_constraintTop_toBottomOf="@id/linear_show_petition"/>
+
+    <TextView
+        android:id="@+id/tv_show_petition_search_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/gray_800"
+        android:fontFamily="@font/ibm_medium"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/linear_show_petition"
+        app:layout_constraintEnd_toEndOf="@id/tv_show_petition_sort"
+        app:layout_constraintTop_toBottomOf="@id/linear_show_petition"/>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatBtn_show_petition"
