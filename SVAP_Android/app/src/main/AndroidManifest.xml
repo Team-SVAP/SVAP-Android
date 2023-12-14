@@ -30,12 +30,12 @@
             android:name=".feature.main.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".feature.start.StartActivity"
-            android:exported="false" />
-        <activity
             android:name=".feature.login.LoginActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize">
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".feature.start.StartActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
