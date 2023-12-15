@@ -53,7 +53,7 @@ interface UserApi {
         @Header("Authorization") accessToken: String
     ): Call<UserInfoResponse>
 
-    @DELETE("/svap/")
+    @DELETE("/svap/user")
     fun deleteUser(
         @Header("Authorization") accessToken: String
     ): Call<Void>
