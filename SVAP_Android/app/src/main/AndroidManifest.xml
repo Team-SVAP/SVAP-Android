@@ -28,11 +28,12 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".feature.main.MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".feature.login.LoginActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".feature.start.StartActivity"
             android:exported="true">
@@ -43,5 +44,5 @@
             </intent-filter>
         </activity>
     </application>
-    
+
 </manifest>
