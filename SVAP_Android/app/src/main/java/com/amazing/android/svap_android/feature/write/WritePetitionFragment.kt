@@ -154,6 +154,13 @@ class WritePetitionFragment : Fragment() {
                     when (response.code()) {
                         200 -> {
                             Toast.makeText(context, "청원이 작성되었습니다.", Toast.LENGTH_SHORT).show()
+                            binding.apply {
+                                etWritePetitionTitle.text = null
+                                etWritePetitionContent.text = null
+                                etWritePetitionLocation.text = null
+                            }
+                            imgUriList.clear()
+                            setImgAdapter()
                         }
 
                         400 -> {
@@ -280,10 +287,14 @@ class WritePetitionFragment : Fragment() {
             val uri = data.data
             imgUriList.add(uri.toString())
             checkInput()
-            val recyclerView = binding.rvWritePetition
-            recyclerView.layoutManager =
-                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            recyclerView.adapter = WriteImageAdapter(imgUriList)
+            setImgAdapter()
         }
+    }
+
+    private fun setImgAdapter() {
+        val recyclerView = binding.rvWritePetition
+        recyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.adapter = WriteImageAdapter(imgUriList)
     }
 }
