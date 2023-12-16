@@ -10,112 +10,135 @@
         android:id="@+id/iv_login"
         android:layout_width="126dp"
         android:layout_height="45dp"
-        android:src="@drawable/svap_icon"
         android:layout_marginTop="115dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/svap_icon"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login"
-        android:fontFamily="@font/ibm_semibold"
-        android:textColor="@color/gray_700"
-        android:textSize="16sp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="68dp"
+        android:fontFamily="@font/ibm_semibold"
+        android:text="@string/login"
+        android:textColor="@color/gray_700"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_login"/>
-    
+        app:layout_constraintTop_toBottomOf="@id/iv_login" />
+
     <EditText
         android:id="@+id/et_login_id"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:background="@drawable/focus_edit_text"
         android:layout_marginTop="16dp"
-        android:hint="@string/id"
-        android:paddingStart="16dp"
-        android:textSize="16sp"
-        android:textColor="@color/gray_800"
-        android:fontFamily="@font/ibm_medium"
         android:layout_marginEnd="30dp"
-        android:inputType="text"
-        app:layout_constraintStart_toStartOf="@id/tv_login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_login"/>
-
-    <EditText
-        android:id="@+id/et_login_pw"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
         android:background="@drawable/focus_edit_text"
-        android:layout_marginTop="16dp"
-        android:hint="@string/passWord"
-        android:paddingStart="16dp"
-        android:textSize="16sp"
-        android:textColor="@color/gray_800"
         android:fontFamily="@font/ibm_medium"
-        android:inputType="textPassword"
-        android:drawableEnd="@drawable/eye_close_line"
-        android:paddingEnd="16dp"
-        app:layout_constraintStart_toStartOf="@id/et_login_id"
+        android:hint="@string/id"
+        android:inputType="text"
+        android:paddingStart="16dp"
+        android:textColor="@color/gray_800"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tv_login"
+        app:layout_constraintTop_toBottomOf="@id/tv_login" />
+
+    <FrameLayout
+        android:id="@+id/linear_login_pw"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="@id/et_login_id"
-        app:layout_constraintTop_toBottomOf="@id/et_login_id"/>
+        app:layout_constraintStart_toStartOf="@id/et_login_id"
+        app:layout_constraintTop_toBottomOf="@id/et_login_id">
+
+        <EditText
+            android:id="@+id/et_login_pw"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/focus_edit_text"
+            android:fontFamily="@font/ibm_medium"
+            android:hint="@string/passWord"
+            android:inputType="textPassword"
+            android:paddingStart="16dp"
+            android:textColor="@color/gray_800"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/iv_login_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/eye_close_line"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/iv_login_open"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/eye_open_line"
+            android:visibility="invisible" />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/tv_login_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:textColor="@color/system_red"
         android:fontFamily="@font/ibm_medium"
-        app:layout_constraintStart_toStartOf="@id/et_login_pw"
-        app:layout_constraintTop_toBottomOf="@id/et_login_pw"/>
+        android:textColor="@color/system_red"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/linear_login_pw"
+        app:layout_constraintTop_toBottomOf="@id/linear_login_pw" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login"
         android:layout_width="0dp"
         android:layout_height="50dp"
+        android:layout_marginBottom="56dp"
         android:background="@drawable/disable_btn"
+        android:enabled="false"
+        android:fontFamily="@font/ibm_medium"
         android:text="@string/login"
         android:textColor="@color/white"
-        android:fontFamily="@font/ibm_medium"
         android:textSize="20sp"
-        android:layout_marginBottom="56dp"
-        android:enabled="false"
-        app:layout_constraintStart_toStartOf="@id/et_login_pw"
-        app:layout_constraintEnd_toEndOf="@id/et_login_pw"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/linear_login_pw"
+        app:layout_constraintStart_toStartOf="@id/linear_login_pw" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_login">
 
         <TextView
             android:id="@+id/tv_login_question"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/ibm_medium"
             android:text="@string/no_member"
             android:textColor="@color/gray_600"
-            android:fontFamily="@font/ibm_medium"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/tv_login_go_signUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/goto_signUp"
-            android:textSize="12sp"
-            android:textColor="@color/main_1"
+            android:layout_marginStart="4dp"
             android:fontFamily="@font/ibm_medium"
-            android:layout_marginStart="4dp"/>
+            android:text="@string/goto_signUp"
+            android:textColor="@color/main_1"
+            android:textSize="12sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
