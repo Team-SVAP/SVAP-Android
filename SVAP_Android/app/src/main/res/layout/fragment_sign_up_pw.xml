@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,58 +10,106 @@
         android:id="@+id/tv_signup_pw_signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/signup"
         android:fontFamily="@font/ibm_semibold"
+        android:text="@string/signup"
         android:textColor="@color/gray_700"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tv_signup_pw_page_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@color/gray_700"
-        android:text="2/3"
         android:fontFamily="@font/ibm_semibold"
+        android:text="2/3"
+        android:textColor="@color/gray_700"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/et_signup_pw_pw"
+    <FrameLayout
+        android:id="@+id/frame_signup_pw_pw"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@drawable/focus_edit_text"
-        android:hint="@string/signup_pw_hint"
-        android:fontFamily="@font/ibm_medium"
-        android:paddingStart="16dp"
-        android:textSize="16sp"
-        android:drawableEnd="@drawable/eye_close_line"
-        android:paddingEnd="16dp"
-        android:singleLine="true"
         android:layout_marginTop="16dp"
-        android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_signup_pw_page_count"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_signup_pw_page_count">
 
-    <EditText
-        android:id="@+id/et_signup_pw_check"
+        <EditText
+            android:id="@+id/et_signup_pw_pw"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/focus_edit_text"
+            android:fontFamily="@font/ibm_medium"
+            android:hint="@string/signup_pw_hint"
+            android:inputType="textPassword"
+            android:paddingStart="16dp"
+            android:singleLine="true"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/iv_signup_pw_open"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/eye_open_line"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/iv_signup_pw_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/eye_close_line"
+            android:visibility="invisible" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frame_signup_pw_check"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@drawable/focus_edit_text"
-        android:hint="@string/passWord_check"
-        android:fontFamily="@font/ibm_medium"
-        android:paddingStart="16dp"
-        android:textSize="16sp"
-        android:drawableEnd="@drawable/eye_close_line"
-        android:paddingEnd="16dp"
         android:layout_marginTop="8dp"
-        android:singleLine="true"
-        android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="@id/et_signup_pw_pw"
-        app:layout_constraintEnd_toEndOf="@id/et_signup_pw_pw"
-        app:layout_constraintTop_toBottomOf="@id/et_signup_pw_pw"/>
+        app:layout_constraintEnd_toEndOf="@id/frame_signup_pw_pw"
+        app:layout_constraintStart_toStartOf="@id/frame_signup_pw_pw"
+        app:layout_constraintTop_toBottomOf="@id/frame_signup_pw_pw">
+
+        <EditText
+            android:id="@+id/et_signup_pw_check"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/focus_edit_text"
+            android:fontFamily="@font/ibm_medium"
+            android:hint="@string/passWord_check"
+            android:inputType="textPassword"
+            android:paddingStart="16dp"
+            android:singleLine="true"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/iv_signup_pw_check_open"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/eye_open_line"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/iv_signup_pw_check_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/eye_close_line"
+            android:visibility="invisible" />
+
+    </FrameLayout>
+
 
     <TextView
         android:id="@+id/tv_signup_pw_check"
@@ -72,51 +119,51 @@
         android:fontFamily="@font/ibm_medium"
         android:textColor="@color/system_red"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@id/et_signup_pw_check"
-        app:layout_constraintTop_toBottomOf="@id/et_signup_pw_check"/>
+        app:layout_constraintStart_toStartOf="@id/frame_signup_pw_check"
+        app:layout_constraintTop_toBottomOf="@id/frame_signup_pw_check" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_signup_pw_next"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/disable_btn"
-            android:textSize="20sp"
             android:text="@string/next"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/ibm_medium"
                 android:text="@string/already_signup"
                 android:textColor="@color/gray_700"
-                android:fontFamily="@font/ibm_medium"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tv_signup_pw_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/login"
+                android:layout_marginStart="8dp"
                 android:fontFamily="@font/ibm_medium"
-                android:textSize="12sp"
+                android:text="@string/login"
                 android:textColor="@color/main_1"
-                android:layout_marginStart="8dp"/>
+                android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
 
