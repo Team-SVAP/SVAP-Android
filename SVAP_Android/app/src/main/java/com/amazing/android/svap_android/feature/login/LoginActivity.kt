@@ -4,6 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.amazing.android.svap_android.R
@@ -29,6 +32,22 @@ class LoginActivity : AppCompatActivity() {
 
         gotoSignup()
         initLoginBtn()
+        initPasswordShow()
+    }
+
+    private fun initPasswordShow() {
+        binding.apply {
+            ivLoginOpen.setOnClickListener {
+                etLoginPw.transformationMethod = PasswordTransformationMethod.getInstance()
+                ivLoginOpen.visibility = View.INVISIBLE
+                ivLoginClose.visibility = View.VISIBLE
+            }
+            ivLoginClose.setOnClickListener {
+                etLoginPw.transformationMethod = HideReturnsTransformationMethod.getInstance()
+                ivLoginOpen.visibility = View.VISIBLE
+                ivLoginClose.visibility = View.INVISIBLE
+            }
+        }
     }
 
     private fun gotoSignup() {
