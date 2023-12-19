@@ -152,7 +152,7 @@ class WritePetitionFragment : Fragment() {
             ).enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     when (response.code()) {
-                        200 -> {
+                        201 -> {
                             Toast.makeText(context, "청원이 작성되었습니다.", Toast.LENGTH_SHORT).show()
                             binding.apply {
                                 etWritePetitionTitle.text = null

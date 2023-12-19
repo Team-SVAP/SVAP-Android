@@ -88,7 +88,7 @@ class SignUpNameFragment : Fragment() {
                 response: Response<SignUpResponse>
             ) {
                 when (response.code()) {
-                    200 -> {
+                    201 -> {
                         Toast.makeText(context, R.string.success_signup, Toast.LENGTH_SHORT).show()
                         val intent = Intent(context, MainActivity::class.java)
                         startActivity(intent)
