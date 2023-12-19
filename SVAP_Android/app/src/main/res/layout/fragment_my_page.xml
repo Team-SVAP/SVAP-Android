@@ -95,27 +95,6 @@
             app:layout_constraintEnd_toEndOf="@id/iv_my_page_line1"
             app:layout_constraintTop_toBottomOf="@id/tv_my_page_show"/>
 
-        <TextView
-            android:id="@+id/tv_my_page_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/edit_my_info"
-            android:textColor="@color/gray_800"
-            android:textSize="12sp"
-            android:fontFamily="@font/ibm_medium"
-            android:layout_marginTop="20dp"
-            app:layout_constraintStart_toStartOf="@id/iv_my_page_line2"
-            app:layout_constraintTop_toBottomOf="@id/iv_my_page_line2"/>
-
-        <ImageView
-            android:id="@+id/iv_my_page_line3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/line"
-            android:layout_marginTop="20dp"
-            app:layout_constraintStart_toStartOf="@id/tv_my_page_edit"
-            app:layout_constraintEnd_toEndOf="@id/iv_my_page_line2"
-            app:layout_constraintTop_toBottomOf="@id/tv_my_page_edit"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -123,9 +102,9 @@
             android:layout_marginTop="20dp"
             android:orientation="horizontal"
             android:gravity="center"
-            app:layout_constraintStart_toStartOf="@id/iv_my_page_line3"
-            app:layout_constraintEnd_toEndOf="@id/iv_my_page_line3"
-            app:layout_constraintTop_toBottomOf="@id/iv_my_page_line3">
+            app:layout_constraintStart_toStartOf="@id/iv_my_page_line2"
+            app:layout_constraintEnd_toEndOf="@id/iv_my_page_line2"
+            app:layout_constraintTop_toBottomOf="@id/iv_my_page_line2">
 
             <TextView
                 android:id="@+id/tv_my_page_logout"
