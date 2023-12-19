@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import com.amazing.android.svap_android.R
 import com.amazing.android.svap_android.api.ApiProvider
@@ -81,7 +82,7 @@ class MyPageFragment : Fragment() {
     private fun deleteUser() {
         val accessToken = context?.getSharedPreferences("token", 0)?.getString("accessToken", null)
         if (accessToken != null) {
-            userApi.deleteUser(accessToken = accessToken).enqueue(object : Callback<Void> {
+            userApi.deleteUser(accessToken = "Bearer $accessToken").enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     when (response.code()) {
                         200 -> {
@@ -101,7 +102,7 @@ class MyPageFragment : Fragment() {
     private fun initUserData() {
         val accessToken = context?.getSharedPreferences("token", 0)?.getString("accessToken", null)
         if (accessToken != null) {
-            userApi.myInfo(accessToken = accessToken).enqueue(object : Callback<UserInfoResponse> {
+            userApi.myInfo(accessToken = "Bearer $accessToken").enqueue(object : Callback<UserInfoResponse> {
                 override fun onResponse(
                     call: Call<UserInfoResponse>,
                     response: Response<UserInfoResponse>
