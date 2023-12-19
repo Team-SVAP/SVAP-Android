@@ -78,7 +78,7 @@ class SignUpNameFragment : Fragment() {
     private fun sever(name: String, accountId: String, password: String) {
         api.signup(
             SignUpRequest(
-                username = name,
+                userName = name,
                 accountId = accountId,
                 password = password,
             )
