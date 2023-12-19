@@ -82,10 +82,12 @@ class SignUpIdFragment : Fragment() {
                         val bundle = Bundle()
                         bundle.putString("accountId", accountId)
 
-                        val fragmentTransaction: FragmentTransaction? =
-                            activity?.supportFragmentManager?.beginTransaction()
-                        fragmentTransaction?.replace(R.id.fl_signup, SignUpPwFragment());
-                        fragmentTransaction?.commit()
+                        val signUpPwFragment = SignUpPwFragment()
+                        signUpPwFragment.arguments = bundle
+
+                        val transaction = activity?.supportFragmentManager?.beginTransaction()
+                        transaction?.replace(R.id.fl_signup, signUpPwFragment)
+                        transaction?.commit()
                     }
 
                     409 -> {
