@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,11 +29,6 @@ class SignUpPwFragment : Fragment() {
     private val retrofit: Retrofit = ApiProvider.getInstance()
     private val api: UserApi = retrofit.create(UserApi::class.java)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,6 +42,32 @@ class SignUpPwFragment : Fragment() {
 
         initNextBtn()
         gotoLogin()
+        initPasswordShow()
+    }
+
+    private fun initPasswordShow() {
+        binding.apply {
+            ivSignupPwCheckOpen.setOnClickListener {
+                etSignupPwCheck.transformationMethod = PasswordTransformationMethod.getInstance()
+                ivSignupPwCheckOpen.visibility = View.INVISIBLE
+                ivSignupPwCheckClose.visibility = View.VISIBLE
+            }
+            ivSignupPwCheckClose.setOnClickListener {
+                etSignupPwCheck.transformationMethod = HideReturnsTransformationMethod.getInstance()
+                ivSignupPwCheckOpen.visibility = View.VISIBLE
+                ivSignupPwCheckClose.visibility = View.INVISIBLE
+            }
+            ivSignupPwOpen.setOnClickListener {
+                etSignupPwPw.transformationMethod = PasswordTransformationMethod.getInstance()
+                ivSignupPwOpen.visibility = View.INVISIBLE
+                ivSignupPwClose.visibility = View.VISIBLE
+            }
+            ivSignupPwClose.setOnClickListener {
+                etSignupPwPw.transformationMethod = HideReturnsTransformationMethod.getInstance()
+                ivSignupPwOpen.visibility = View.VISIBLE
+                ivSignupPwClose.visibility = View.INVISIBLE
+            }
+        }
     }
 
     private fun gotoLogin() {
