@@ -56,7 +56,7 @@
             android:layout_gravity="right|center_vertical"
             android:layout_marginEnd="16dp"
             android:src="@drawable/eye_open_line"
-            android:visibility="visible" />
+            android:visibility="invisible" />
 
         <ImageView
             android:id="@+id/iv_signup_pw_close"
@@ -65,7 +65,7 @@
             android:layout_gravity="right|center_vertical"
             android:layout_marginEnd="16dp"
             android:src="@drawable/eye_close_line"
-            android:visibility="invisible" />
+            android:visibility="visible" />
 
     </FrameLayout>
 
@@ -97,7 +97,7 @@
             android:layout_gravity="right|center_vertical"
             android:layout_marginEnd="16dp"
             android:src="@drawable/eye_open_line"
-            android:visibility="visible" />
+            android:visibility="invisible" />
 
         <ImageView
             android:id="@+id/iv_signup_pw_check_close"
@@ -106,7 +106,7 @@
             android:layout_gravity="right|center_vertical"
             android:layout_marginEnd="16dp"
             android:src="@drawable/eye_close_line"
-            android:visibility="invisible" />
+            android:visibility="visible" />
 
     </FrameLayout>
 
