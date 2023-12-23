@@ -219,6 +219,8 @@ class WritePetitionFragment : Fragment() {
     }
 
     private fun initSpinner() {
+        listOfType.clear()
+
         val default = PetitionTypeModel("종류 선택")
         listOfType.add(default)
 
