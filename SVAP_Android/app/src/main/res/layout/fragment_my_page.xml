@@ -35,7 +35,6 @@
             android:id="@+id/tv_my_page_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="강해린"
             android:fontFamily="@font/ibm_medium"
             android:textColor="@color/main_1"
             android:textSize="24sp"
