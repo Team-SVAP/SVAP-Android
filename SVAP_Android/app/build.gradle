@@ -18,7 +18,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "BASE_URL", properties["BASE_URL"])
+        buildConfigField("String", "BASE _URL", properties["BASE_URL"])
     }
 
     buildFeatures {
@@ -40,6 +40,10 @@ android {
     }
     viewBinding {
         enabled = true
+    }
+
+    defaultConfig {
+        buildConfigField()
     }
 }
 
